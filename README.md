@@ -8,17 +8,13 @@
 2. Find the week you just listened to (search for `week: 17` etc.)
 3. Change `status: upcoming` → `status: completed`
 4. Fill in `album`, `artist`, and any `links` you have
-5. Run artwork fetch (optional — fills in cover art automatically):
-   ```bash
-   npm run fetch-artwork
-   ```
-6. Commit and push:
+5. Commit and push:
    ```bash
    git add src/data/selections/2026.yaml
    git commit -m "Week 17: Jamie - Bon Iver / For Emma, Forever Ago"
    git push
    ```
-7. GitHub Actions deploys automatically — live in ~60 seconds.
+6. GitHub Actions deploys automatically — live in ~60 seconds.
 
 ## Adding links
 
@@ -41,8 +37,7 @@ npm run dev
 
 1. Push this repo to GitHub as `listening-party`
 2. In your repo → **Settings → Pages → Source**: set to **GitHub Actions**
-3. Update `astro.config.mjs`: replace `USERNAME` with your GitHub username
-4. Push — Actions will build and deploy automatically
+3. Push — Actions will build and deploy automatically
 
 ## Changing contributor names / colours
 
