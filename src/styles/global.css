@@ -1,0 +1,557 @@
+/* ── Reset & base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0d0d0d;
+  --bg-card:     #181818;
+  --bg-hover:    #222;
+  --border:      #2a2a2a;
+  --text:        #f0ede8;
+  --text-muted:  #888;
+  --text-faint:  #444;
+  --accent:      #e8a87c;   /* warm amber — Jamie */
+  --accent-2:    #7ca8e8;   /* cool blue  — Alex  */
+  --green:       #4caf82;
+  --font:        system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:        'SF Mono', 'Fira Code', monospace;
+  --radius:      8px;
+  --radius-lg:   12px;
+  --transition:  0.18s ease;
+}
+
+html { background: var(--bg); color: var(--text); font-family: var(--font); scroll-behavior: smooth; }
+body { min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── Layout ─────────────────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Site nav ───────────────────────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  gap: 12px;
+}
+.site-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+.site-nav__logo svg { color: var(--accent); flex-shrink: 0; }
+.site-nav__logo:hover span { color: var(--accent); }
+.site-nav__logo span { transition: color var(--transition); }
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* Season + Artists pills */
+.site-nav__pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.site-nav__pill:hover { color: var(--text); background: var(--bg-hover); }
+.site-nav__pill.active {
+  color: var(--text);
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+}
+
+/* Separator */
+.site-nav__sep {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+
+/* Contributor links */
+.site-nav__contrib {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.site-nav__contrib:hover { color: var(--text); background: var(--bg-hover); }
+.site-nav__contrib.active { color: var(--text); background: var(--bg-hover); border: 1px solid var(--border); }
+.site-nav__contrib-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.site-nav__contrib-name { transition: color var(--transition); }
+
+@media (max-width: 520px) {
+  .site-nav__contrib-name { display: none; }
+  .site-nav__contrib { padding: 5px 8px; }
+  .site-nav__contrib-dot { width: 10px; height: 10px; }
+}
+
+/* ── Contributor page ────────────────────────────────────────────── */
+.contrib-hero {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--border);
+}
+.contrib-hero__back {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition);
+}
+.contrib-hero__back:hover { color: var(--text-muted); }
+.contrib-hero__name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.contrib-hero__dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.contrib-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.contrib-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.contrib-stat__value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.contrib-stat__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* ── Artists page ────────────────────────────────────────────────── */
+.page-hero {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.page-hero__sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.artists-grid {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.artist-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.artist-card:hover { transform: translateY(-2px); border-color: #3a3a3a; }
+.artist-card__name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+.artist-card__count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.artist-detail {
+  padding: 48px 0;
+}
+.artist-detail__back {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition);
+}
+.artist-detail__back:hover { color: var(--text-muted); }
+.artist-detail__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+.picks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+}
+.pick-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+}
+.pick-row__artwork {
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #1a1a1a;
+}
+.pick-row__artwork img { width: 100%; height: 100%; object-fit: cover; }
+.pick-row__artwork-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+}
+.pick-row__info { flex: 1; min-width: 0; }
+.pick-row__album { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+.pick-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.pick-row__contributor {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pick-row__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────── */
+.hero {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+.hero__eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.hero__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.hero__description {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+}
+.contributor-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.contributor-badge__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Progress bar ───────────────────────────────────────────────── */
+.progress-section {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.progress-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.progress-count {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.progress-count strong { color: var(--text); }
+.progress-track {
+  height: 3px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+/* ── Year sections ──────────────────────────────────────────────── */
+.seasons-grid {
+  padding: 48px 0;
+}
+.year-section {
+  margin-bottom: 56px;
+}
+.year-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.year-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* ── Album card ─────────────────────────────────────────────────── */
+.album-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+  position: relative;
+}
+.album-card:hover {
+  transform: translateY(-3px);
+  border-color: #3a3a3a;
+  background: var(--bg-hover);
+}
+.album-card__artwork {
+  aspect-ratio: 1 / 1;
+  background: #1a1a1a;
+  overflow: hidden;
+  position: relative;
+}
+.album-card__artwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.album-card:hover .album-card__artwork img { transform: scale(1.04); }
+.album-card__artwork-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+}
+.album-card__artwork-placeholder svg { width: 40%; height: 40%; }
+.album-card__body {
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 6px;
+}
+.album-card__contributor {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.album-card__contributor-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.album-card__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  /* Clamp to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.album-card__artist {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.album-card__links {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.album-card__link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  transition: color var(--transition);
+  padding: 4px 0;
+}
+.album-card__link:hover { color: var(--text); }
+.album-card__link svg { width: 13px; height: 13px; flex-shrink: 0; }
+.album-card__week {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── Upcoming (locked) card ─────────────────────────────────────── */
+.album-card--upcoming {
+  opacity: 0.45;
+}
+.album-card--upcoming .album-card__artwork-placeholder {
+  background: #111;
+}
+.album-card--upcoming:hover {
+  transform: none;
+  opacity: 0.55;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero { padding: 40px 0 32px; }
+  .year-cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .site-footer { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 380px) {
+  .year-cards { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,86 @@
+---
+import { loadAllSelections, loadContributors, getAllArtists, getContribMap, slugify } from '../../lib/data';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const allSelections = loadAllSelections();
+  const artists = getAllArtists(allSelections);
+  return artists.map(name => ({
+    params: { slug: slugify(name) },
+    props: { artistName: name },
+  }));
+}
+
+const { slug } = Astro.params;
+const { artistName } = Astro.props;
+
+const allSelections = loadAllSelections();
+const contributors = loadContributors();
+const contribMap = getContribMap(contributors);
+
+const picks = allSelections
+  .filter(s => s.status === 'completed' && s.artist === artistName)
+  .sort((a, b) => (a.year_slot ?? 0) - (b.year_slot ?? 0));
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base title={`${artistName} | Artists | Listening Party`}>
+  <div class="artist-detail">
+    <div class="container">
+      <a href={`${base}/artists/`} class="artist-detail__back">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All artists
+      </a>
+
+      <h1 class="artist-detail__title">{artistName}</h1>
+
+      <div class="picks-list">
+        {picks.map(pick => {
+          const contrib = contribMap[pick.contributor];
+          const q = encodeURIComponent(`${pick.artist} ${pick.album}`);
+          const wikiUrl    = pick.links?.wikipedia || `https://en.wikipedia.org/w/index.php?search=${q}`;
+          const spotifyUrl = pick.links?.spotify   || `https://open.spotify.com/search/${q}`;
+          const youtubeUrl = pick.links?.youtube   || `https://music.youtube.com/search?q=${q}`;
+          return (
+            <div class="pick-row">
+              <div class="pick-row__artwork">
+                {pick.artwork_url
+                  ? <img src={pick.artwork_url} alt={pick.album} loading="lazy" />
+                  : <div class="pick-row__artwork-placeholder">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </div>
+                }
+              </div>
+              <div class="pick-row__info">
+                <div class="pick-row__album">{pick.album}</div>
+                <div class="pick-row__meta">
+                  <span>{pick.year_slot}</span>
+                  <span>·</span>
+                  <span class="pick-row__contributor">
+                    <span class="pick-row__dot" style={`background:${contrib?.color ?? '#888'}`}></span>
+                    {contrib?.name ?? pick.contributor}
+                  </span>
+                  {pick.season && <><span>·</span><span style="color:var(--text-faint)">{pick.season}</span></>}
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;flex-shrink:0;">
+                <a href={wikiUrl} target="_blank" rel="noopener" class="album-card__link" title="Wikipedia">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </a>
+                <a href={spotifyUrl} target="_blank" rel="noopener" class="album-card__link" title="Spotify">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.624.624 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.972c3.632-1.102 8.147-.568 11.233 1.328a.78.78 0 01.257 1.072zm.105-2.835c-3.223-1.914-8.54-2.09-11.618-1.156a.937.937 0 11-.543-1.794c3.533-1.072 9.404-.865 13.115 1.338a.937.937 0 01-.954 1.612z"/></svg>
+                </a>
+                <a href={youtubeUrl} target="_blank" rel="noopener" class="album-card__link" title="YouTube Music">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</Base>

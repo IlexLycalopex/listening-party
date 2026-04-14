@@ -1,0 +1,92 @@
+---
+import { loadContributors, loadAllSelections, getContribMap } from '../../lib/data';
+import Base from '../../layouts/Base.astro';
+import AlbumCard from '../../components/AlbumCard.astro';
+
+export async function getStaticPaths() {
+  const contributors = loadContributors();
+  return contributors.map(c => ({ params: { id: c.id } }));
+}
+
+const { id } = Astro.params;
+const contributors = loadContributors();
+const contribMap = getContribMap(contributors);
+const contrib = contribMap[id!];
+
+const allSelections = loadAllSelections();
+const mySelections = allSelections.filter(s => s.contributor === id);
+const completed = mySelections.filter(s => s.status === 'completed' && s.album);
+const planned   = mySelections.filter(s => s.status === 'upcoming');
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Group completed picks by year_slot
+const byYear = new Map<number, typeof completed>();
+for (const sel of completed) {
+  if (!byYear.has(sel.year_slot)) byYear.set(sel.year_slot, []);
+  byYear.get(sel.year_slot)!.push(sel);
+}
+const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
+---
+
+<Base title={`${contrib?.name} | Listening Party`}>
+  <div class="contrib-hero">
+    <div class="container">
+      <a href={`${base}/2026/`} class="contrib-hero__back">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </a>
+      <h1 class="contrib-hero__name">
+        <span class="contrib-hero__dot" style={`background:${contrib?.color}`}></span>
+        {contrib?.name}
+      </h1>
+      <div class="contrib-stats">
+        <div class="contrib-stat">
+          <span class="contrib-stat__value" style={`color:${contrib?.color}`}>{completed.length}</span>
+          <span class="contrib-stat__label">Completed</span>
+        </div>
+        <div class="contrib-stat">
+          <span class="contrib-stat__value">{planned.length}</span>
+          <span class="contrib-stat__label">Planned</span>
+        </div>
+        <div class="contrib-stat">
+          <span class="contrib-stat__value">{mySelections.length}</span>
+          <span class="contrib-stat__label">Total picks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="seasons-grid">
+    <div class="container">
+      {completed.length === 0
+        ? <p style="color:var(--text-muted); padding:48px 0;">No completed picks yet.</p>
+        : sortedYears.map(year => {
+            const picks = byYear.get(year)!;
+            return (
+              <section class="year-section">
+                <h2 class="year-heading">{year}</h2>
+                <div class="year-cards">
+                  {picks.map(pick => (
+                    <AlbumCard
+                      week={pick.week}
+                      year_slot={pick.year_slot}
+                      contributor={pick.contributor}
+                      album={pick.album}
+                      artist={pick.artist}
+                      status={pick.status}
+                      artwork_url={pick.artwork_url}
+                      links={pick.links}
+                      notes={pick.notes}
+                      contributorColor={contrib?.color ?? '#888'}
+                      contributorName={contrib?.name ?? id!}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })
+      }
+    </div>
+  </main>
+</Base>

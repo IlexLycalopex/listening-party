@@ -1,0 +1,708 @@
+season: 2026
+title: "Listening Party 2026"
+description: "52 weeks. 2 brothers. One album from every year 2000–2025."
+total_weeks: 52
+
+selections:
+  # ── 2000 ─────────────────────────────────────────────────────────
+  - week: 1
+    year_slot: 2000
+    contributor: jamie
+    album: "He Has Left Us Alone but Shafts of Light Sometimes Grace the Corner of Our Rooms…"
+    artist: "A Silver Mt. Zion"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/20/e9/d7/20e9d77f-4ee9-5567-148f-7bc5af4e62a3/mzi.brwjculz.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/He_Has_Left_Us_Alone_but_Shafts_of_Light_Sometimes_Grace_the_Corner_of_Our_Rooms%E2%80%A6"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 2
+    year_slot: 2000
+    contributor: nick
+    album: "Voodoo"
+    artist: "D'Angelo"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/38/2b/c2/382bc296-17e7-10ba-eacc-f06c2c5b0b90/23UMGIM08744.rgb.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Voodoo_(D%27Angelo_album)"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2001 ─────────────────────────────────────────────────────────
+  - week: 3
+    year_slot: 2001
+    contributor: jamie
+    album: "Drukqs"
+    artist: "Aphex Twin"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/40/7f/bc/407fbccc-1361-4425-972b-0d60018a752f/mzi.vbkjoksk.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Drukqs"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 4
+    year_slot: 2001
+    contributor: nick
+    album: "Is This It"
+    artist: "The Strokes"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9c/ae/7a/9cae7a72-29ed-08aa-1b42-913776bbb6ec/886443855571.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Is_This_It"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2002 ─────────────────────────────────────────────────────────
+  - week: 5
+    year_slot: 2002
+    contributor: jamie
+    album: "Geogaddi"
+    artist: "Boards of Canada"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/77/7c/2e777c13-60e3-c231-8be0-b0d43dc91598/mzi.yseuvnlj.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Geogaddi"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 6
+    year_slot: 2002
+    contributor: nick
+    album: "Alice"
+    artist: "Tom Waits"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/21/d2/a5/21d2a5bc-48d9-e8b3-a9c1-dc3ecdc3ba72/0045778798452.png/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Alice_(Tom_Waits_album)"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2003 ─────────────────────────────────────────────────────────
+  - week: 7
+    year_slot: 2003
+    contributor: jamie
+    album: "Frank"
+    artist: "Amy Winehouse"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/21/c0/14/21c0145f-5277-bf9b-6f18-44d8ef5ae11d/15UMGIM31140.rgb.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Frank_(Amy_Winehouse_album)"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 8
+    year_slot: 2003
+    contributor: nick
+    album: "Talking Honky Blues"
+    artist: "Buck 65"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music/0b/9b/c3/mzi.ojdsayhg.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Talking_Honky_Blues"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2004 ─────────────────────────────────────────────────────────
+  - week: 9
+    year_slot: 2004
+    contributor: jamie
+    album: "The Milk-Eyed Mender"
+    artist: "Joanna Newsom"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9a/53/91/9a539134-5d30-86ae-cc2d-73ff5705da17/781484026327.png/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/The_Milk-Eyed_Mender"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 10
+    year_slot: 2004
+    contributor: nick
+    album: "Madvillainy"
+    artist: "Madvillain"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/18/b4/9a/18b49ad5-6407-7169-27f4-d1c8bcb5504b/s05.nqwebndj.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Madvillainy"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2005 ─────────────────────────────────────────────────────────
+  - week: 11
+    year_slot: 2005
+    contributor: jamie
+    album: "Cripple Crow"
+    artist: "Devendra Banhart"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/aa/b1/2f/aab12f4c-1d50-f094-61b7-31131b905645/52443.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Cripple_Crow"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 12
+    year_slot: 2005
+    contributor: nick
+    album: "Illinois"
+    artist: "Sufjan Stevens"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/47/9e/a3/479ea382-2686-3ea9-3def-d67d81fb2ee3/mzi.lhtprasx.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Illinois_(album)"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2006 ─────────────────────────────────────────────────────────
+  - week: 13
+    year_slot: 2006
+    contributor: jamie
+    album: "Gulag Orkestar"
+    artist: "Beirut"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a7/dd/34/a7dd34b1-c126-75e3-8f8c-4895661e5bdf/656605365367ITM.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Gulag_Orkestar"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 14
+    year_slot: 2006
+    contributor: nick
+    album: "Ys"
+    artist: "Joanna Newsom"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/85/a1/a2/85a1a29f-7a03-0c8a-ce4c-3a57e0213413/781484030324.png/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Ys_(album)"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2007 ─────────────────────────────────────────────────────────
+
+  - week: 15
+    year_slot: 2007
+    contributor: nick
+    album: "Enjoy Eternal Bliss"
+    artist: "Yndi Halda"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music/fc/05/03/mzi.nyflbizm.jpg/600x600bb.jpg"
+    links:
+      wikipedia: "https://en.wikipedia.org/wiki/Enjoy_Eternal_Bliss"
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 16
+    year_slot: 2007
+    contributor: jamie
+    album: "The Reminder"
+    artist: "Feist"
+    status: completed
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cc/f4/46/ccf44641-40d8-018d-1bb2-e86ed8b7beeb/00602547820976.rgb.jpg/600x600bb.jpg"
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considered: The Adventures of Ghost Horse and Stillborn – CocoRosie; Volta - Bjork"
+
+  # ── 2008 ─────────────────────────────────────────────────────────
+  - week: 17
+    year_slot: 2008
+    contributor: jamie
+    album: "For Emma, Forever Ago"
+    artist: "Bon Iver"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: CW Stoneking"
+
+  - week: 18
+    year_slot: 2008
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2009 ─────────────────────────────────────────────────────────
+  - week: 19
+    year_slot: 2009
+    contributor: jamie
+    album: "xx"
+    artist: "The xx"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Two Suns – Bat for Lashes; Glitter and Doom Live – Tom Waits"
+
+  - week: 20
+    year_slot: 2009
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2010 ─────────────────────────────────────────────────────────
+  - week: 21
+    year_slot: 2010
+    contributor: jamie
+    album: "Have One on Me"
+    artist: "Joanna Newsom"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: In Evening Air – Future Islands"
+
+  - week: 22
+    year_slot: 2010
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2011 ─────────────────────────────────────────────────────────
+  - week: 23
+    year_slot: 2011
+    contributor: jamie
+    album: "Black Sands"
+    artist: "Bonobo"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: The Harrow & The Harvest – Gillian Welch; Let Them Talk – Hugh Laurie; Biophilia – Björk; Bad as Me – Tom Waits"
+
+  - week: 24
+    year_slot: 2011
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2012 ─────────────────────────────────────────────────────────
+  - week: 25
+    year_slot: 2012
+    contributor: jamie
+    album: "Every Kingdom"
+    artist: "Ben Howard"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: I Am the Night – Perturbator"
+
+  - week: 26
+    year_slot: 2012
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2013 ─────────────────────────────────────────────────────────
+  - week: 27
+    year_slot: 2013
+    contributor: jamie
+    album: "Dream River"
+    artist: "Bill Callahan"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Immunity – Jon Hopkins; Days Are Gone – HAIM"
+
+  - week: 28
+    year_slot: 2013
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2014 ─────────────────────────────────────────────────────────
+  - week: 29
+    year_slot: 2014
+    contributor: jamie
+    album: "Ultraviolence"
+    artist: "Lana Del Rey"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: St. Vincent – St. Vincent; Royal Blood – Royal Blood; I Forgot Where We Were – Ben Howard"
+
+  - week: 30
+    year_slot: 2014
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2015 ─────────────────────────────────────────────────────────
+  - week: 31
+    year_slot: 2015
+    contributor: jamie
+    album: "In Colour"
+    artist: "Jamie xx"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: The Epic – Kamasi Washington; Divers – Joanna Newsom"
+
+  - week: 32
+    year_slot: 2015
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2016 ─────────────────────────────────────────────────────────
+  - week: 33
+    year_slot: 2016
+    contributor: jamie
+    album: "Not to Disappear"
+    artist: "Daughter"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 34
+    year_slot: 2016
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2017 ─────────────────────────────────────────────────────────
+  - week: 35
+    year_slot: 2017
+    contributor: jamie
+    album: "Lotta Sea Lice"
+    artist: "Courtney Barnett & Kurt Vile"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 36
+    year_slot: 2017
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2018 ─────────────────────────────────────────────────────────
+  - week: 37
+    year_slot: 2018
+    contributor: jamie
+    album: "Be the Cowboy"
+    artist: "Mitski"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Ex:Re – Ex:Re; Cusp – Alela Diane"
+
+  - week: 38
+    year_slot: 2018
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2019 ─────────────────────────────────────────────────────────
+  - week: 39
+    year_slot: 2019
+    contributor: jamie
+    album: "Ghosteen"
+    artist: "Nick Cave & The Bad Seeds"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Heard It in a Past Life – Maggie Rogers"
+
+  - week: 40
+    year_slot: 2019
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2020 ─────────────────────────────────────────────────────────
+  - week: 41
+    year_slot: 2020
+    contributor: jamie
+    album: "Fetch the Bolt Cutters"
+    artist: "Fiona Apple"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 42
+    year_slot: 2020
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2021 ─────────────────────────────────────────────────────────
+  - week: 43
+    year_slot: 2021
+    contributor: jamie
+    album: "Sometimes I Might Be Introvert"
+    artist: "Little Simz"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Chemtrails Over the Country Club – Lana Del Rey"
+
+  - week: 44
+    year_slot: 2021
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2022 ─────────────────────────────────────────────────────────
+  - week: 45
+    year_slot: 2022
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 46
+    year_slot: 2022
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2023 ─────────────────────────────────────────────────────────
+  - week: 47
+    year_slot: 2023
+    contributor: jamie
+    album: "The Moon Also Rises"
+    artist: "Johnny Flynn"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 48
+    year_slot: 2023
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2024 ─────────────────────────────────────────────────────────
+  - week: 49
+    year_slot: 2024
+    contributor: jamie
+    album: "Dance, No One's Watching"
+    artist: "Ezra Collective"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 50
+    year_slot: 2024
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 2025 ─────────────────────────────────────────────────────────
+  - week: 51
+    year_slot: 2025
+    contributor: jamie
+    album: "Music Is Invisible"
+    artist: "Tourist"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Lux – Rosalía"
+
+  - week: 52
+    year_slot: 2025
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""

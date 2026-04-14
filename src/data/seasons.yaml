@@ -1,0 +1,12 @@
+- id: "2026"
+  title: "Listening Party 2026"
+  description: "52 weeks. 2 brothers. One album from every year 2000–2025."
+  contributors: [jamie, nick]
+  status: active
+
+# Add future seasons here, e.g.:
+# - id: "2027"
+#   title: "Listening Party 2027"
+#   description: "3 contributors. Working backwards from 1999."
+#   contributors: [jamie, nick, chris]
+#   status: active

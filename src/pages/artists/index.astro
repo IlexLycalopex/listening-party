@@ -1,0 +1,47 @@
+---
+import { loadAllSelections, getAllArtists, slugify } from '../../lib/data';
+import Base from '../../layouts/Base.astro';
+
+const allSelections = loadAllSelections();
+const completed = allSelections.filter(s => s.status === 'completed' && s.artist);
+
+// Build artist → pick count map
+const artistCounts = new Map<string, number>();
+for (const s of completed) {
+  artistCounts.set(s.artist, (artistCounts.get(s.artist) ?? 0) + 1);
+}
+
+const artists = getAllArtists(allSelections).map(name => ({
+  name,
+  slug: slugify(name),
+  count: artistCounts.get(name) ?? 0,
+}));
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base title="Artists | Listening Party">
+  <div class="page-hero">
+    <div class="container">
+      <a href={`${base}/2026/`} class="artist-detail__back">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </a>
+      <h1 class="page-hero__title">Artists</h1>
+      <p class="page-hero__sub">{artists.length} artists picked so far</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="artists-grid">
+        {artists.map(a => (
+          <a href={`${base}/artists/${a.slug}/`} class="artist-card">
+            <span class="artist-card__name">{a.name}</span>
+            <span class="artist-card__count">{a.count} pick{a.count !== 1 ? 's' : ''}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</Base>

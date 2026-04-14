@@ -1,0 +1,22 @@
+{
+  "name": "listening-party",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fetch-artwork": "node scripts/fetch-artwork.js"
+  },
+  "dependencies": {
+    "astro": "^6.1.6",
+    "js-yaml": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9"
+  }
+}

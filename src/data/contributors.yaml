@@ -1,0 +1,11 @@
+- id: jamie
+  name: Jamie
+  color: "#e8a87c"
+
+- id: nick
+  name: Nick
+  color: "#7ca8e8"
+
+- id: chris
+  name: Chris
+  color: "#7ce8a8"
