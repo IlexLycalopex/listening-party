@@ -31,6 +31,8 @@ const nowPlayingPick = completed.find(s => s.week === nowPlayingWeek);
 const activeContribIds = new Set(season.selections.map(s => s.contributor));
 const activeContribs = contributors.filter(c => activeContribIds.has(c.id));
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 // Group completed picks by year_slot
 const byYear = new Map<number, typeof season.selections>();
 for (const sel of completed) {
@@ -51,7 +53,7 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
           <p class="hero__description">{season.description}</p>
           <div class="hero__meta">
             {activeContribs.map(c => (
-              <a href={`${import.meta.env.BASE_URL}contributors/${c.id}/`} class="contributor-badge" style="text-decoration:none">
+              <a href={`${base}/contributors/${c.id}/`} class="contributor-badge" style="text-decoration:none">
                 <span class="contributor-badge__dot" style={`background:${c.color}`}></span>
                 {c.name}
               </a>
