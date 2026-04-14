@@ -222,20 +222,8 @@ selections:
     notes: "Also considered: The Adventures of Ghost Horse and Stillborn – CocoRosie; Volta - Bjork"
 
   # ── 2008 ─────────────────────────────────────────────────────────
-  - week: 17
-    year_slot: 2008
-    contributor: jamie
-    album: "For Emma, Forever Ago"
-    artist: "Bon Iver"
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: "Also considering: CW Stoneking"
 
-  - week: 18
+  - week: 17
     year_slot: 2008
     contributor: nick
     album: ""
@@ -248,8 +236,35 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 18
+    year_slot: 2008
+    contributor: jamie
+    album: "Jungle Blues"
+    artist: "CW Stoneking"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: For Emma, Forever Ago - Bon Iver"
+
+
   # ── 2009 ─────────────────────────────────────────────────────────
   - week: 19
+    year_slot: 2009
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+  
+  - week: 20
     year_slot: 2009
     contributor: jamie
     album: "xx"
@@ -261,9 +276,10 @@ selections:
       spotify: ""
       youtube: ""
     notes: "Also considering: Two Suns – Bat for Lashes; Glitter and Doom Live – Tom Waits"
-
-  - week: 20
-    year_slot: 2009
+  
+  # ── 2010 ─────────────────────────────────────────────────────────
+  - week: 21
+    year_slot: 2010
     contributor: nick
     album: ""
     artist: ""
@@ -275,8 +291,7 @@ selections:
       youtube: ""
     notes: ""
 
-  # ── 2010 ─────────────────────────────────────────────────────────
-  - week: 21
+  - week: 22
     year_slot: 2010
     contributor: jamie
     album: "Have One on Me"
@@ -289,8 +304,10 @@ selections:
       youtube: ""
     notes: "Also considering: In Evening Air – Future Islands"
 
-  - week: 22
-    year_slot: 2010
+
+  # ── 2011 ─────────────────────────────────────────────────────────
+  - week: 23
+    year_slot: 2011
     contributor: nick
     album: ""
     artist: ""
@@ -302,8 +319,7 @@ selections:
       youtube: ""
     notes: ""
 
-  # ── 2011 ─────────────────────────────────────────────────────────
-  - week: 23
+  - week: 24
     year_slot: 2011
     contributor: jamie
     album: "Black Sands"
@@ -316,8 +332,9 @@ selections:
       youtube: ""
     notes: "Also considering: The Harrow & The Harvest – Gillian Welch; Let Them Talk – Hugh Laurie; Biophilia – Björk; Bad as Me – Tom Waits"
 
-  - week: 24
-    year_slot: 2011
+  # ── 2012 ─────────────────────────────────────────────────────────
+  - week: 25
+    year_slot: 2012
     contributor: nick
     album: ""
     artist: ""
@@ -329,8 +346,7 @@ selections:
       youtube: ""
     notes: ""
 
-  # ── 2012 ─────────────────────────────────────────────────────────
-  - week: 25
+  - week: 26
     year_slot: 2012
     contributor: jamie
     album: "Every Kingdom"
@@ -343,35 +359,10 @@ selections:
       youtube: ""
     notes: "Also considering: I Am the Night – Perturbator"
 
-  - week: 26
-    year_slot: 2012
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
 
   # ── 2013 ─────────────────────────────────────────────────────────
   - week: 27
     year_slot: 2013
-    contributor: jamie
-    album: "Dream River"
-    artist: "Bill Callahan"
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: "Also considering: Immunity – Jon Hopkins; Days Are Gone – HAIM"
-
-  - week: 28
-    year_slot: 2013
     contributor: nick
     album: ""
     artist: ""
@@ -383,8 +374,35 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 28
+    year_slot: 2013
+    contributor: jamie
+    album: "Immunity"
+    artist: "John Hopkins"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Dream River - Bill Callahan; Days Are Gone – HAIM"
+
+
   # ── 2014 ─────────────────────────────────────────────────────────
   - week: 29
+    year_slot: 2014
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 30
     year_slot: 2014
     contributor: jamie
     album: "Ultraviolence"
@@ -396,19 +414,6 @@ selections:
       spotify: ""
       youtube: ""
     notes: "Also considering: St. Vincent – St. Vincent; Royal Blood – Royal Blood; I Forgot Where We Were – Ben Howard"
-
-  - week: 30
-    year_slot: 2014
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
 
   # ── 2015 ─────────────────────────────────────────────────────────
   - week: 31
