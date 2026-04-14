@@ -2,17 +2,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:          #0d0d0d;
-  --bg-card:     #181818;
-  --bg-hover:    #222;
-  --border:      #2a2a2a;
-  --text:        #f0ede8;
-  --text-muted:  #888;
-  --text-faint:  #444;
-  --accent:      #e8a87c;   /* warm amber — Jamie */
-  --accent-2:    #7ca8e8;   /* cool blue  — Alex  */
+  --bg:          #0b0908;
+  --bg-card:     #141210;
+  --bg-hover:    #1e1a18;
+  --border:      #262220;
+  --text:        #f0ebe3;
+  --text-muted:  #8a8078;
+  --text-faint:  #504840;
+  --accent:      #d4714a;   /* burnt sienna — Jamie */
+  --accent-2:    #6a9fd4;   /* sky blue     — Nick  */
   --green:       #4caf82;
   --font:        system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --display:     'Bebas Neue', Impact, sans-serif;
   --mono:        'SF Mono', 'Fira Code', monospace;
   --radius:      8px;
   --radius-lg:   12px;
@@ -36,9 +37,9 @@ img { display: block; max-width: 100%; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(13,13,13,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(11,9,8,0.72);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .site-nav__inner {
   display: flex;
@@ -112,8 +113,8 @@ img { display: block; max-width: 100%; }
 .site-nav__contrib:hover { color: var(--text); background: var(--bg-hover); }
 .site-nav__contrib.active { color: var(--text); background: var(--bg-hover); border: 1px solid var(--border); }
 .site-nav__contrib-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -304,37 +305,114 @@ img { display: block; max-width: 100%; }
 
 /* ── Hero ───────────────────────────────────────────────────────── */
 .hero {
-  padding: 64px 0 48px;
+  padding: 64px 0 56px;
   border-bottom: 1px solid var(--border);
+}
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero__inner--split {
+  grid-template-columns: 58fr 42fr;
 }
 .hero__eyebrow {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .hero__title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin-bottom: 16px;
+  font-family: var(--display);
+  font-size: clamp(3.4rem, 7vw, 6rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 0.94;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 .hero__description {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  max-width: 560px;
-  line-height: 1.6;
-  margin-bottom: 32px;
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 36px;
 }
 .hero__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
 }
+
+/* Hero right column — floating now-playing card */
+.hero__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero__np-card {
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 0 0 1px var(--accent), 0 10px 52px rgba(212,113,74,0.24);
+}
+.hero__np-badge {
+  background: var(--accent);
+  color: rgba(255,255,255,0.95);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-align: center;
+  padding: 6px 0;
+  text-transform: uppercase;
+}
+.hero__np-art {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: var(--bg-hover);
+  position: relative;
+}
+.hero__np-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero__np-art-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+}
+.hero__np-body { padding: 16px; }
+.hero__np-contrib {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 7px;
+}
+.hero__np-contrib-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.hero__np-album {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.hero__np-artist { font-size: 0.82rem; color: var(--text-muted); }
 .contributor-badge {
   display: flex;
   align-items: center;
@@ -368,19 +446,30 @@ img { display: block; max-width: 100%; }
   color: var(--text-muted);
 }
 .progress-count {
-  font-size: 0.875rem;
-  color: var(--text-muted);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
-.progress-count strong { color: var(--text); }
+.progress-count__pct {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+.progress-count__detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
 .progress-track {
-  height: 3px;
+  height: 6px;
   background: var(--border);
   border-radius: 99px;
   overflow: hidden;
 }
 .progress-fill {
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
   border-radius: 99px;
   transition: width 0.6s ease;
 }
@@ -412,6 +501,7 @@ img { display: block; max-width: 100%; }
 .album-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
+  border-left: 3px solid var(--contrib-color, var(--border));
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
@@ -524,11 +614,11 @@ img { display: block; max-width: 100%; }
 /* ── Now playing card ───────────────────────────────────────────── */
 .album-card--now-playing {
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 4px 24px rgba(232,168,124,0.18);
+  box-shadow: 0 0 0 1px var(--accent), 0 6px 32px rgba(212,113,74,0.22);
 }
 .album-card--now-playing:hover {
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(232,168,124,0.25);
+  box-shadow: 0 0 0 1px var(--accent), 0 10px 40px rgba(212,113,74,0.3);
 }
 .album-card__np-badge {
   position: absolute;
@@ -537,7 +627,7 @@ img { display: block; max-width: 100%; }
   right: 0;
   z-index: 2;
   background: var(--accent);
-  color: #1a0f00;
+  color: rgba(255,255,255,0.95);
   font-size: 0.6rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -825,8 +915,12 @@ img { display: block; max-width: 100%; }
 }
 
 /* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hero__inner--split { grid-template-columns: 1fr; }
+  .hero__right { display: none; } /* card appears in main grid anyway */
+}
 @media (max-width: 640px) {
-  .hero { padding: 40px 0 32px; }
+  .hero { padding: 40px 0 36px; }
   .year-cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .site-footer { flex-direction: column; align-items: flex-start; }
 }

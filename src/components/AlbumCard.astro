@@ -42,6 +42,7 @@ const spotifyUrl = links?.spotify   || `https://open.spotify.com/search/${q}`;
 <article
   class={`album-card${isUpcoming ? ' album-card--upcoming' : ''}${isNowPlaying ? ' album-card--now-playing' : ''}`}
   id={isNowPlaying ? 'now-playing' : undefined}
+  style={`--contrib-color: ${contributorColor}`}
 >
   {isNowPlaying && <div class="album-card__np-badge">▶ NOW PLAYING</div>}
 

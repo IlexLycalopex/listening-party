@@ -26,6 +26,7 @@ const totalWeeks = season.total_weeks;
 
 // The card with the highest week number among completed = "now playing"
 const nowPlayingWeek = completed.length > 0 ? Math.max(...completed.map(s => s.week)) : -1;
+const nowPlayingPick = completed.find(s => s.week === nowPlayingWeek);
 
 const activeContribIds = new Set(season.selections.map(s => s.contributor));
 const activeContribs = contributors.filter(c => activeContribIds.has(c.id));
@@ -42,22 +43,56 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
 <Base title={`${season.title} | Listening Party`} description={season.description}>
   <header class="hero">
     <div class="container">
-      <p class="hero__eyebrow">Season {latestId}</p>
-      <h1 class="hero__title">{season.title}</h1>
-      <p class="hero__description">{season.description}</p>
-      <div class="hero__meta">
-        {activeContribs.map(c => (
-          <a href={`${import.meta.env.BASE_URL}contributors/${c.id}/`} class="contributor-badge" style="text-decoration:none">
-            <span class="contributor-badge__dot" style={`background:${c.color}`}></span>
-            {c.name}
-          </a>
-        ))}
-        {nowPlayingWeek > 0 && (
-          <a href="#now-playing" class="hero__jump-btn">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            Jump to current
-          </a>
+      <div class={`hero__inner${nowPlayingPick ? ' hero__inner--split' : ''}`}>
+
+        <div class="hero__left">
+          <p class="hero__eyebrow">Season {latestId}</p>
+          <h1 class="hero__title">{season.title}</h1>
+          <p class="hero__description">{season.description}</p>
+          <div class="hero__meta">
+            {activeContribs.map(c => (
+              <a href={`${import.meta.env.BASE_URL}contributors/${c.id}/`} class="contributor-badge" style="text-decoration:none">
+                <span class="contributor-badge__dot" style={`background:${c.color}`}></span>
+                {c.name}
+              </a>
+            ))}
+            {nowPlayingWeek > 0 && (
+              <a href="#now-playing" class="hero__jump-btn">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Jump to current
+              </a>
+            )}
+          </div>
+        </div>
+
+        {nowPlayingPick && (
+          <div class="hero__right">
+            <div class="hero__np-card">
+              <div class="hero__np-badge">▶ Now Playing &mdash; Week {nowPlayingPick.week}</div>
+              <div class="hero__np-art">
+                {nowPlayingPick.artwork_url
+                  ? <img src={nowPlayingPick.artwork_url} alt={`${nowPlayingPick.album} by ${nowPlayingPick.artist}`} />
+                  : <div class="hero__np-art-placeholder">
+                      <svg viewBox="0 0 24 24" width="40%" height="40%" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <circle cx="12" cy="12" r="9" />
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                }
+              </div>
+              <div class="hero__np-body">
+                <div class="hero__np-contrib">
+                  <span class="hero__np-contrib-dot" style={`background:${contribMap[nowPlayingPick.contributor]?.color ?? '#888'}`}></span>
+                  {contribMap[nowPlayingPick.contributor]?.name ?? nowPlayingPick.contributor}
+                </div>
+                <div class="hero__np-album">{nowPlayingPick.album}</div>
+                <div class="hero__np-artist">{nowPlayingPick.artist}</div>
+              </div>
+            </div>
+          </div>
         )}
+
       </div>
     </div>
   </header>
