@@ -1,8 +1,16 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { join, dirname } from 'node:path';
 import yaml from 'js-yaml';
 
-const dataDir = join(process.cwd(), 'src', 'data');
+// In dev, import.meta.url points to the source file → relative path works.
+// In CI build, compiled chunks land in dist/.prerender/ → fall back to process.cwd().
+function resolveDataDir(): string {
+  const relPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'data');
+  if (existsSync(relPath)) return relPath;
+  return join(process.cwd(), 'src', 'data');
+}
+const dataDir = resolveDataDir();
 
 // ── Types ─────────────────────────────────────────────────────────
 export interface Contributor {

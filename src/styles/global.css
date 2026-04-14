@@ -489,7 +489,7 @@ img { display: block; max-width: 100%; }
 }
 .album-card__links {
   display: flex;
-  gap: 10px;
+  gap: 4px;
   margin-top: auto;
   padding-top: 10px;
   border-top: 1px solid var(--border);
@@ -497,16 +497,16 @@ img { display: block; max-width: 100%; }
 .album-card__link {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
   color: var(--text-faint);
-  transition: color var(--transition);
-  padding: 4px 0;
+  transition: color var(--transition), background var(--transition);
+  flex-shrink: 0;
 }
-.album-card__link:hover { color: var(--text); }
-.album-card__link svg { width: 13px; height: 13px; flex-shrink: 0; }
+.album-card__link:hover { color: var(--text); background: var(--bg-hover); }
+.album-card__link svg { width: 16px; height: 16px; }
 .album-card__week {
   position: absolute;
   top: 10px;
