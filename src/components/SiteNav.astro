@@ -2,13 +2,12 @@
 import { loadContributors } from '../lib/data';
 import yaml from 'js-yaml';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join, dirname } from 'node:path';
+import { join } from 'node:path';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const seasonsRaw = readFileSync(
-  join(dirname(fileURLToPath(import.meta.url)), '..', 'data', 'seasons.yaml'), 'utf8'
+  join(process.cwd(), 'src', 'data', 'seasons.yaml'), 'utf8'
 );
 const seasons: Array<{ id: string; status: string }> = yaml.load(seasonsRaw) as any;
 const activeSeasons = seasons.filter(s => s.status === 'active');

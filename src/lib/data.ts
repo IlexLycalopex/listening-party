@@ -1,9 +1,8 @@
 import { readFileSync, readdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join, dirname } from 'node:path';
+import { join } from 'node:path';
 import yaml from 'js-yaml';
 
-const dataDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'data');
+const dataDir = join(process.cwd(), 'src', 'data');
 
 // ── Types ─────────────────────────────────────────────────────────
 export interface Contributor {
