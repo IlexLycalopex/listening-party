@@ -521,17 +521,295 @@ img { display: block; max-width: 100%; }
   color: rgba(255,255,255,0.7);
 }
 
+/* ── Now playing card ───────────────────────────────────────────── */
+.album-card--now-playing {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 4px 24px rgba(232,168,124,0.18);
+}
+.album-card--now-playing:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(232,168,124,0.25);
+}
+.album-card__np-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: var(--accent);
+  color: #1a0f00;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 4px 0;
+}
+
 /* ── Upcoming (locked) card ─────────────────────────────────────── */
 .album-card--upcoming {
-  opacity: 0.45;
+  opacity: 0.5;
+  cursor: default;
 }
 .album-card--upcoming .album-card__artwork-placeholder {
   background: #111;
 }
 .album-card--upcoming:hover {
   transform: none;
-  opacity: 0.55;
+  border-color: var(--border);
+  background: var(--bg-card);
+  opacity: 0.6;
 }
+.album-card__locked-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ── Upcoming section ───────────────────────────────────────────── */
+.upcoming-section .year-cards {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+.year-heading__count {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  margin-left: 10px;
+  text-transform: none;
+}
+
+/* ── Notes trigger button ───────────────────────────────────────── */
+.album-card__notes-trigger {
+  color: var(--accent) !important;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.album-card__notes-trigger:hover {
+  background: rgba(232,168,124,0.12) !important;
+}
+
+/* ── Notes modal ────────────────────────────────────────────────── */
+.notes-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modal-fade-in 0.18s ease;
+}
+.notes-modal[hidden] { display: none; }
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.notes-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.notes-modal__box {
+  position: relative;
+  z-index: 1;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  animation: modal-slide-up 0.2s ease;
+}
+@keyframes modal-slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.notes-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.notes-modal__album {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.notes-modal__byline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.notes-modal__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.notes-modal__close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition);
+  line-height: 0;
+}
+.notes-modal__close:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+.notes-modal__body {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+/* ── Hero jump-to-current button ────────────────────────────────── */
+.hero__jump-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  border: 1px solid rgba(232,168,124,0.35);
+  transition: background var(--transition), border-color var(--transition);
+}
+.hero__jump-btn:hover {
+  background: rgba(232,168,124,0.1);
+  border-color: var(--accent);
+}
+
+/* ── Contributor scorecard ──────────────────────────────────────── */
+.contrib-scorecard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.contrib-scorecard__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  min-width: 120px;
+}
+.contrib-scorecard__item--wide { flex: 1 1 200px; }
+.contrib-scorecard__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.contrib-scorecard__value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.contrib-scorecard__value--pick {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.contrib-scorecard__pick-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.contrib-scorecard__pick-week {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+/* ── Artist card enhancements ───────────────────────────────────── */
+.artist-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+.artist-card__contribs {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.artist-card__contrib-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Artist detail enhancements ─────────────────────────────────── */
+.artist-detail__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.artist-detail__pick-count {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.artist-detail__season-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: color var(--transition), border-color var(--transition);
+}
+.artist-detail__season-badge:hover {
+  color: var(--text);
+  border-color: #444;
+}
+.pick-row__season-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  color: var(--text-faint);
+  transition: color var(--transition);
+}
+.pick-row__season-tag:hover { color: var(--text-muted); }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
 .site-footer {

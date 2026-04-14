@@ -14,15 +14,19 @@ const contributors = loadContributors();
 const season = loadSeason(seasonId!);
 const contribMap = getContribMap(contributors);
 
-// Only show completed picks; group by year_slot
-const completed = season.selections.filter(s => s.status === 'completed');
+const completed  = season.selections.filter(s => s.status === 'completed');
+const upcoming   = season.selections.filter(s => s.status === 'upcoming');
 const completedCount = completed.length;
 const totalWeeks = season.total_weeks;
+
+// The card with the highest week number among completed = "now playing"
+const nowPlayingWeek = completed.length > 0 ? Math.max(...completed.map(s => s.week)) : -1;
 
 // Active contributors are those who appear in this season's selections
 const activeContribIds = new Set(season.selections.map(s => s.contributor));
 const activeContribs = contributors.filter(c => activeContribIds.has(c.id));
 
+// Group completed picks by year_slot
 const byYear = new Map<number, typeof season.selections>();
 for (const sel of completed) {
   if (!byYear.has(sel.year_slot)) byYear.set(sel.year_slot, []);
@@ -44,6 +48,12 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
             {c.name}
           </a>
         ))}
+        {nowPlayingWeek > 0 && (
+          <a href="#now-playing" class="hero__jump-btn">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Jump to current
+          </a>
+        )}
       </div>
     </div>
   </header>
@@ -73,6 +83,7 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
                     notes={pick.notes}
                     contributorColor={contrib?.color ?? '#888'}
                     contributorName={contrib?.name ?? pick.contributor}
+                    isNowPlaying={pick.week === nowPlayingWeek}
                   />
                 );
               })}
@@ -80,6 +91,32 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
           </section>
         );
       })}
+
+      {upcoming.length > 0 && (
+        <section class="year-section upcoming-section">
+          <h2 class="year-heading">
+            Upcoming
+            <span class="year-heading__count">{upcoming.length} weeks remaining</span>
+          </h2>
+          <div class="year-cards">
+            {upcoming.map(pick => {
+              const contrib = contribMap[pick.contributor];
+              return (
+                <AlbumCard
+                  week={pick.week}
+                  year_slot={pick.year_slot}
+                  contributor={pick.contributor}
+                  album={pick.album}
+                  artist={pick.artist}
+                  status="upcoming"
+                  contributorColor={contrib?.color ?? '#888'}
+                  contributorName={contrib?.name ?? pick.contributor}
+                />
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   </main>
 

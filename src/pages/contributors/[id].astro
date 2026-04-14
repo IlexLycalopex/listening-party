@@ -14,9 +14,32 @@ const contribMap = getContribMap(contributors);
 const contrib = contribMap[id!];
 
 const allSelections = loadAllSelections();
-const mySelections = allSelections.filter(s => s.contributor === id);
-const completed = mySelections.filter(s => s.status === 'completed' && s.album);
-const planned   = mySelections.filter(s => s.status === 'upcoming');
+const mySelections  = allSelections.filter(s => s.contributor === id);
+const completed     = mySelections.filter(s => s.status === 'completed' && s.album);
+const planned       = mySelections.filter(s => s.status === 'upcoming');
+
+// ── Derived scorecard stats (zero extra data entry) ────────────────
+const uniqueArtists = new Set(completed.map(s => s.artist)).size;
+
+const yearSlots = completed.map(s => s.year_slot).filter(Boolean);
+const minYear   = yearSlots.length ? Math.min(...yearSlots) : null;
+const maxYear   = yearSlots.length ? Math.max(...yearSlots) : null;
+const yearRange = minYear && maxYear
+  ? (minYear === maxYear ? `${minYear}` : `${minYear} – ${maxYear}`)
+  : '—';
+
+const latestPick = completed.length
+  ? completed.reduce((a, b) => a.week > b.week ? a : b)
+  : null;
+
+// Favourite decade — most picks from which 10-year bracket
+const decadeCounts = new Map<string, number>();
+for (const s of completed) {
+  if (!s.year_slot) continue;
+  const label = `${Math.floor(s.year_slot / 10) * 10}s`;
+  decadeCounts.set(label, (decadeCounts.get(label) ?? 0) + 1);
+}
+const favDecade = [...decadeCounts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? '—';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -32,14 +55,19 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
 <Base title={`${contrib?.name} | Listening Party`}>
   <div class="contrib-hero">
     <div class="container">
-      <a href={`${base}/2026/`} class="contrib-hero__back">
-        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href={`${base}/`} class="contrib-hero__back">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         Back
       </a>
+
       <h1 class="contrib-hero__name">
         <span class="contrib-hero__dot" style={`background:${contrib?.color}`}></span>
         {contrib?.name}
       </h1>
+
+      <!-- Primary stats -->
       <div class="contrib-stats">
         <div class="contrib-stat">
           <span class="contrib-stat__value" style={`color:${contrib?.color}`}>{completed.length}</span>
@@ -47,13 +75,41 @@ const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
         </div>
         <div class="contrib-stat">
           <span class="contrib-stat__value">{planned.length}</span>
-          <span class="contrib-stat__label">Planned</span>
+          <span class="contrib-stat__label">Remaining</span>
         </div>
         <div class="contrib-stat">
           <span class="contrib-stat__value">{mySelections.length}</span>
           <span class="contrib-stat__label">Total picks</span>
         </div>
+        <div class="contrib-stat">
+          <span class="contrib-stat__value">{uniqueArtists}</span>
+          <span class="contrib-stat__label">Artists</span>
+        </div>
       </div>
+
+      <!-- Secondary scorecard -->
+      {completed.length > 0 && (
+        <div class="contrib-scorecard">
+          <div class="contrib-scorecard__item">
+            <span class="contrib-scorecard__label">Year span</span>
+            <span class="contrib-scorecard__value">{yearRange}</span>
+          </div>
+          <div class="contrib-scorecard__item">
+            <span class="contrib-scorecard__label">Fav decade</span>
+            <span class="contrib-scorecard__value">{favDecade}</span>
+          </div>
+          {latestPick && (
+            <div class="contrib-scorecard__item contrib-scorecard__item--wide">
+              <span class="contrib-scorecard__label">Latest pick</span>
+              <span class="contrib-scorecard__value contrib-scorecard__value--pick">
+                <span class="contrib-scorecard__pick-dot" style={`background:${contrib?.color}`}></span>
+                {latestPick.album}
+                <span class="contrib-scorecard__pick-week">Wk {latestPick.week}</span>
+              </span>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   </div>
 

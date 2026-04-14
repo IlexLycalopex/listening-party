@@ -1,21 +1,32 @@
 ---
-import { loadAllSelections, getAllArtists, slugify } from '../../lib/data';
+import { loadAllSelections, loadContributors, getAllArtists, getContribMap, slugify } from '../../lib/data';
 import Base from '../../layouts/Base.astro';
 
 const allSelections = loadAllSelections();
-const completed = allSelections.filter(s => s.status === 'completed' && s.artist);
+const contributors  = loadContributors();
+const contribMap    = getContribMap(contributors);
+const completed     = allSelections.filter(s => s.status === 'completed' && s.artist);
 
-// Build artist → pick count map
-const artistCounts = new Map<string, number>();
+// Build artist → picks, contributors, seasons
+const artistData = new Map<string, { count: number; contribs: Set<string>; seasons: Set<string> }>();
 for (const s of completed) {
-  artistCounts.set(s.artist, (artistCounts.get(s.artist) ?? 0) + 1);
+  if (!artistData.has(s.artist)) artistData.set(s.artist, { count: 0, contribs: new Set(), seasons: new Set() });
+  const d = artistData.get(s.artist)!;
+  d.count++;
+  d.contribs.add(s.contributor);
+  if (s.season) d.seasons.add(s.season);
 }
 
-const artists = getAllArtists(allSelections).map(name => ({
-  name,
-  slug: slugify(name),
-  count: artistCounts.get(name) ?? 0,
-}));
+const artists = getAllArtists(allSelections).map(name => {
+  const d = artistData.get(name) ?? { count: 0, contribs: new Set<string>(), seasons: new Set<string>() };
+  return {
+    name,
+    slug: slugify(name),
+    count: d.count,
+    contribs: [...d.contribs],
+    seasons: [...d.seasons].sort(),
+  };
+});
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -23,12 +34,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <Base title="Artists | Listening Party">
   <div class="page-hero">
     <div class="container">
-      <a href={`${base}/2026/`} class="artist-detail__back">
-        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href={`${base}/`} class="artist-detail__back">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         Back
       </a>
       <h1 class="page-hero__title">Artists</h1>
-      <p class="page-hero__sub">{artists.length} artists picked so far</p>
+      <p class="page-hero__sub">{artists.length} artists · all seasons</p>
     </div>
   </div>
 
@@ -38,7 +51,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         {artists.map(a => (
           <a href={`${base}/artists/${a.slug}/`} class="artist-card">
             <span class="artist-card__name">{a.name}</span>
-            <span class="artist-card__count">{a.count} pick{a.count !== 1 ? 's' : ''}</span>
+            <div class="artist-card__footer">
+              <span class="artist-card__count">{a.count} pick{a.count !== 1 ? 's' : ''}</span>
+              <span class="artist-card__contribs">
+                {a.contribs.map(cid => {
+                  const c = contribMap[cid];
+                  return (
+                    <span
+                      class="artist-card__contrib-dot"
+                      style={`background:${c?.color ?? '#888'}`}
+                      title={c?.name ?? cid}
+                    ></span>
+                  );
+                })}
+              </span>
+            </div>
           </a>
         ))}
       </div>

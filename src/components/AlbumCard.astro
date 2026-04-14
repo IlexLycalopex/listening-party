@@ -11,6 +11,7 @@ export interface Props {
   notes?: string;
   contributorColor?: string;
   contributorName?: string;
+  isNowPlaying?: boolean;
 }
 
 const {
@@ -21,34 +22,44 @@ const {
   status,
   artwork_url,
   links,
+  notes,
   contributorColor = '#888',
   contributorName = contributor,
+  isNowPlaying = false,
 } = Astro.props;
 
 const isUpcoming = status === 'upcoming';
-const hasMissingData = isUpcoming && !album;
+const hasNotes = !isUpcoming && Boolean(notes?.trim());
+const modalId = `notes-wk${week}`;
 
 // Auto-generate search links when not manually supplied
 const q = encodeURIComponent(`${artist} ${album}`);
-const wikiSearch = `https://en.wikipedia.org/w/index.php?search=${q}`;
-const youtubeSearch = `https://music.youtube.com/search?q=${q}`;
-const spotifySearch = `https://open.spotify.com/search/${q}`;
-
-const wikiUrl    = links?.wikipedia || wikiSearch;
-const youtubeUrl = links?.youtube   || youtubeSearch;
-const spotifyUrl = links?.spotify   || spotifySearch;
+const wikiUrl    = links?.wikipedia || `https://en.wikipedia.org/w/index.php?search=${q}`;
+const youtubeUrl = links?.youtube   || `https://music.youtube.com/search?q=${q}`;
+const spotifyUrl = links?.spotify   || `https://open.spotify.com/search/${q}`;
 ---
 
-<article class={`album-card${isUpcoming ? ' album-card--upcoming' : ''}`}>
+<article
+  class={`album-card${isUpcoming ? ' album-card--upcoming' : ''}${isNowPlaying ? ' album-card--now-playing' : ''}`}
+  id={isNowPlaying ? 'now-playing' : undefined}
+>
+  {isNowPlaying && <div class="album-card__np-badge">▶ NOW PLAYING</div>}
+
   <div class="album-card__artwork">
-    {artwork_url
+    {!isUpcoming && artwork_url
       ? <img src={artwork_url} alt={`${album} by ${artist}`} loading="lazy" />
       : <div class="album-card__artwork-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="12" r="9" />
-            <circle cx="12" cy="12" r="3" />
-            <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke-linecap="round"/>
-          </svg>
+          {isUpcoming
+            ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            : <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke-linecap="round"/>
+              </svg>
+          }
         </div>
     }
     <span class="album-card__week">Wk {week}</span>
@@ -60,16 +71,33 @@ const spotifyUrl = links?.spotify   || spotifySearch;
       {contributorName}
     </div>
 
-    {!hasMissingData
-      ? <>
+    {isUpcoming
+      ? <div class="album-card__locked-label">Upcoming</div>
+      : <>
           <div class="album-card__title">{album}</div>
           <div class="album-card__artist">{artist}</div>
         </>
-      : <div class="album-card__title" style="color:var(--text-faint); font-style:italic;">TBA</div>
     }
 
     {!isUpcoming &&
       <div class="album-card__links">
+        {hasNotes && (
+          <button
+            class="album-card__link album-card__notes-trigger"
+            data-modal={modalId}
+            title="Read notes"
+            aria-label="Read notes"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <line x1="10" y1="9" x2="8" y2="9"/>
+            </svg>
+          </button>
+        )}
         <a class="album-card__link" href={wikiUrl} target="_blank" rel="noopener" title="Wikipedia">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
         </a>
@@ -83,3 +111,73 @@ const spotifyUrl = links?.spotify   || spotifySearch;
     }
   </div>
 </article>
+
+{hasNotes && (
+  <div class="notes-modal" id={modalId} hidden aria-hidden="true">
+    <div class="notes-modal__backdrop" data-close-modal></div>
+    <div class="notes-modal__box" role="dialog" aria-modal="true" aria-label={`Notes for ${album}`}>
+      <div class="notes-modal__header">
+        <div class="notes-modal__meta">
+          <div class="notes-modal__album">{album}</div>
+          <div class="notes-modal__byline">
+            <span class="notes-modal__dot" style={`background:${contributorColor}`}></span>
+            {contributorName} · {artist}
+          </div>
+        </div>
+        <button class="notes-modal__close" data-close-modal aria-label="Close notes" type="button">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <p class="notes-modal__body">{notes}</p>
+    </div>
+  </div>
+)}
+
+<script>
+  // Event delegation — runs once, handles all note modals on the page
+  if (!(window as any).__notesModalReady) {
+    (window as any).__notesModalReady = true;
+
+    function openModal(id: string) {
+      const modal = document.getElementById(id) as HTMLElement | null;
+      if (!modal) return;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      (modal.querySelector('.notes-modal__close') as HTMLElement)?.focus();
+    }
+
+    function closeModal(modal: HTMLElement) {
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+
+      // Open via trigger button
+      const trigger = target.closest('[data-modal]') as HTMLElement | null;
+      if (trigger?.dataset.modal) {
+        openModal(trigger.dataset.modal);
+        return;
+      }
+
+      // Close via backdrop or close button
+      if (target.closest('[data-close-modal]')) {
+        const modal = target.closest('.notes-modal') as HTMLElement | null;
+        if (modal) closeModal(modal);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const open = document.querySelector('.notes-modal:not([hidden])') as HTMLElement | null;
+        if (open) closeModal(open);
+      }
+    });
+  }
+</script>

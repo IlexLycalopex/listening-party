@@ -11,16 +11,18 @@ export async function getStaticPaths() {
   }));
 }
 
-const { slug } = Astro.params;
 const { artistName } = Astro.props;
 
 const allSelections = loadAllSelections();
-const contributors = loadContributors();
-const contribMap = getContribMap(contributors);
+const contributors  = loadContributors();
+const contribMap    = getContribMap(contributors);
 
 const picks = allSelections
   .filter(s => s.status === 'completed' && s.artist === artistName)
   .sort((a, b) => (a.year_slot ?? 0) - (b.year_slot ?? 0));
+
+// Unique seasons this artist appears in
+const seasons = [...new Set(picks.map(p => p.season).filter(Boolean))].sort();
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -29,11 +31,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="artist-detail">
     <div class="container">
       <a href={`${base}/artists/`} class="artist-detail__back">
-        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         All artists
       </a>
 
       <h1 class="artist-detail__title">{artistName}</h1>
+
+      <div class="artist-detail__meta">
+        <span class="artist-detail__pick-count">{picks.length} pick{picks.length !== 1 ? 's' : ''}</span>
+        {seasons.map(s => (
+          <a href={`${base}/${s}/`} class="artist-detail__season-badge">{s}</a>
+        ))}
+      </div>
 
       <div class="picks-list">
         {picks.map(pick => {
@@ -63,10 +74,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                     <span class="pick-row__dot" style={`background:${contrib?.color ?? '#888'}`}></span>
                     {contrib?.name ?? pick.contributor}
                   </span>
-                  {pick.season && <><span>·</span><span style="color:var(--text-faint)">{pick.season}</span></>}
+                  {pick.season && (
+                    <>
+                      <span>·</span>
+                      <a href={`${base}/${pick.season}/`} class="pick-row__season-tag">{pick.season}</a>
+                    </>
+                  )}
                 </div>
               </div>
-              <div style="display:flex;gap:10px;flex-shrink:0;">
+              <div style="display:flex;gap:6px;flex-shrink:0;">
                 <a href={wikiUrl} target="_blank" rel="noopener" class="album-card__link" title="Wikipedia">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 </a>
