@@ -13,7 +13,8 @@ const pct = Math.round((completed / total) * 100);
     <div class="progress-header">
       <span class="progress-label">Season progress</span>
       <span class="progress-count">
-        <strong>Week {completed}</strong> of {total} complete &nbsp;·&nbsp; {pct}%
+        <strong class="progress-count__pct">{pct}%</strong>
+        <span class="progress-count__detail">Week {completed} of {total}</span>
       </span>
     </div>
     <div class="progress-track">
