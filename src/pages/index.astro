@@ -1,13 +1,92 @@
 ---
-// Redirect to the latest active season
+// Render the latest active season directly — no redirect needed
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import yaml from 'js-yaml';
+import { loadContributors, loadSeason, getContribMap } from '../lib/data';
+import Base from '../layouts/Base.astro';
+import AlbumCard from '../components/AlbumCard.astro';
+import ProgressBar from '../components/ProgressBar.astro';
 
 const seasonsRaw = readFileSync(join(process.cwd(), 'src', 'data', 'seasons.yaml'), 'utf8');
 const seasons: Array<{ id: string; status: string }> = yaml.load(seasonsRaw) as any;
-const latest = [...seasons].filter(s => s.status === 'active').pop();
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const latestId = [...seasons].filter(s => s.status === 'active').pop()?.id ?? '2026';
 
-return Astro.redirect(`${base}/${latest?.id ?? '2026'}/`);
+const contributors = loadContributors();
+const season = loadSeason(latestId);
+const contribMap = getContribMap(contributors);
+
+const completed = season.selections.filter(s => s.status === 'completed');
+const completedCount = completed.length;
+const totalWeeks = season.total_weeks;
+
+const activeContribIds = new Set(season.selections.map(s => s.contributor));
+const activeContribs = contributors.filter(c => activeContribIds.has(c.id));
+
+const byYear = new Map<number, typeof season.selections>();
+for (const sel of completed) {
+  if (!byYear.has(sel.year_slot)) byYear.set(sel.year_slot, []);
+  byYear.get(sel.year_slot)!.push(sel);
+}
+const sortedYears = [...byYear.keys()].sort((a, b) => a - b);
 ---
+
+<Base title={`${season.title} | Listening Party`} description={season.description}>
+  <header class="hero">
+    <div class="container">
+      <p class="hero__eyebrow">Season {latestId}</p>
+      <h1 class="hero__title">{season.title}</h1>
+      <p class="hero__description">{season.description}</p>
+      <div class="hero__meta">
+        {activeContribs.map(c => (
+          <a href={`${import.meta.env.BASE_URL}contributors/${c.id}/`} class="contributor-badge" style="text-decoration:none">
+            <span class="contributor-badge__dot" style={`background:${c.color}`}></span>
+            {c.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <ProgressBar completed={completedCount} total={totalWeeks} />
+
+  <main class="seasons-grid">
+    <div class="container">
+      {sortedYears.map(year => {
+        const picks = byYear.get(year)!;
+        return (
+          <section class="year-section">
+            <h2 class="year-heading">{year}</h2>
+            <div class="year-cards">
+              {picks.map(pick => {
+                const contrib = contribMap[pick.contributor];
+                return (
+                  <AlbumCard
+                    week={pick.week}
+                    year_slot={pick.year_slot}
+                    contributor={pick.contributor}
+                    album={pick.album}
+                    artist={pick.artist}
+                    status={pick.status}
+                    artwork_url={pick.artwork_url}
+                    links={pick.links}
+                    notes={pick.notes}
+                    contributorColor={contrib?.color ?? '#888'}
+                    contributorName={contrib?.name ?? pick.contributor}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;width:100%;">
+      <span>Listening Party {latestId}</span>
+      <span style="color:var(--text-faint);">Edit <code style="font-family:var(--mono)">src/data/selections/{latestId}.yaml</code> each week</span>
+    </div>
+  </footer>
+</Base>
