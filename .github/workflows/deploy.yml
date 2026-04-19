@@ -38,7 +38,7 @@ jobs:
           git add src/data/selections/
           if ! git diff --staged --quiet; then
             git commit -m "chore: auto-fetch missing artwork URLs [skip ci]"
-            git push
+            git push origin HEAD:${{ github.ref_name }}
           fi
 
       - name: Build
