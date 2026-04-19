@@ -29,16 +29,26 @@ const lines = raw.split('\n');
 async function fetchArtwork(artist, album) {
   const q = encodeURIComponent(`${artist} ${album}`);
   const url = `https://itunes.apple.com/search?term=${q}&entity=album&limit=5`;
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    for (const result of data.results ?? []) {
-      // Pick highest-res variant (replace 100x100 with 600x600)
-      const art = result.artworkUrl100?.replace('100x100bb', '600x600bb');
-      if (art) return art;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.warn(`  ⚠ iTunes API returned HTTP ${res.status} for "${album}" (attempt ${attempt}/3)`);
+        if (attempt < 3) await new Promise(r => setTimeout(r, attempt * 2000));
+        continue;
+      }
+      const data = await res.json();
+      for (const result of data.results ?? []) {
+        // Pick highest-res variant (replace 100x100 with 600x600)
+        const art = result.artworkUrl100?.replace('100x100bb', '600x600bb');
+        if (art) return art;
+      }
+      console.warn(`  ⚠ iTunes returned 0 results for "${artist} – ${album}"`);
+      return null;
+    } catch (e) {
+      console.warn(`  ⚠ iTunes fetch failed for "${album}" (attempt ${attempt}/3): ${e.message}`);
+      if (attempt < 3) await new Promise(r => setTimeout(r, attempt * 2000));
     }
-  } catch (e) {
-    console.warn(`  ⚠ iTunes fetch failed for "${album}": ${e.message}`);
   }
   return null;
 }

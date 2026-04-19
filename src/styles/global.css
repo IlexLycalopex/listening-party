@@ -917,7 +917,6 @@ img { display: block; max-width: 100%; }
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 860px) {
   .hero__inner--split { grid-template-columns: 1fr; }
-  .hero__right { order: -1; }
 }
 @media (max-width: 640px) {
   .hero { padding: 40px 0 36px; }
