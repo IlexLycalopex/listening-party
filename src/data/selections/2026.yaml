@@ -226,15 +226,15 @@ selections:
   - week: 17
     year_slot: 2008
     contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
+    album: "For Emma, Forever Ago"
+    artist: "Bon Iver"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
       spotify: ""
       youtube: ""
-    notes: ""
+    notes: "Also considered: Santigold - Santigold.  Tough Year"
 
   - week: 18
     year_slot: 2008
