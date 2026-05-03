@@ -242,7 +242,7 @@ selections:
     album: "Jungle Blues"
     artist: "CW Stoneking"
     status: completed
-    artwork_url: ""
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/52/05/b8/5205b878-d54c-ade5-b380-bc4e49556dbe/TI59840_cover.jpg/600x600bb.jpg"
     links:
       wikipedia: ""
       spotify: ""
@@ -257,7 +257,7 @@ selections:
     album: "Sometimes I Wish We Were An Eagle"
     artist: "Bill Callahan"
     status: completed
-    artwork_url: ""
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/86/35/7a/86357a18-5b40-f8e1-4960-dbb2d11fa529/781484038528.png/600x600bb.jpg"
     links:
       wikipedia: ""
       spotify: ""
