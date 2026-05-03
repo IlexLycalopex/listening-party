@@ -241,22 +241,22 @@ selections:
     contributor: jamie
     album: "Jungle Blues"
     artist: "CW Stoneking"
-    status: upcoming
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
       spotify: ""
       youtube: ""
-    notes: "Also considering: For Emma, Forever Ago - Bon Iver"
+    notes: "Also considered: For Emma, Forever Ago - Bon Iver"
 
 
   # ── 2009 ─────────────────────────────────────────────────────────
   - week: 19
     year_slot: 2009
     contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
+    album: "Sometimes I Wish We Were An Eagle"
+    artist: "Bill Callahan"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
