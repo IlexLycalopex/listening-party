@@ -269,13 +269,13 @@ selections:
     contributor: jamie
     album: "xx"
     artist: "The xx"
-    status: upcoming
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
       spotify: ""
       youtube: ""
-    notes: "Also considering: Two Suns – Bat for Lashes; Glitter and Doom Live – Tom Waits"
+    notes: "Also considered: Two Suns – Bat for Lashes; Glitter and Doom Live – Tom Waits"
   
   # ── 2010 ─────────────────────────────────────────────────────────
   - week: 21
