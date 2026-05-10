@@ -270,7 +270,7 @@ selections:
     album: "xx"
     artist: "The xx"
     status: completed
-    artwork_url: ""
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/28/44/8e/28448e14-19be-438b-bc9b-8c1d3f68f578/609008295069.png/600x600bb.jpg"
     links:
       wikipedia: ""
       spotify: ""
