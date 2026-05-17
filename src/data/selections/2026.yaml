@@ -281,9 +281,9 @@ selections:
   - week: 21
     year_slot: 2010
     contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
+    album: "My Beautiful Dark Twisted Fantasy"
+    artist: "Kanye West"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
