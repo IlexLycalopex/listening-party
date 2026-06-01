@@ -297,7 +297,7 @@ selections:
     album: "In Evening Air"
     artist: "Future Islands"
     status: completed
-    artwork_url: ""
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/43/80/47438060-5bc3-6068-9117-93613414aec9/652637340259.png/600x600bb.jpg"
     links:
       wikipedia: ""
       spotify: ""
@@ -312,7 +312,7 @@ selections:
     album: "Kaputt"
     artist: "Destroyer"
     status: completed
-    artwork_url: ""
+    artwork_url: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3c/e2/42/3ce2420b-a664-44e9-f6e9-4a26b3d22bba/57092.jpg/600x600bb.jpg"
     links:
       wikipedia: ""
       spotify: ""
