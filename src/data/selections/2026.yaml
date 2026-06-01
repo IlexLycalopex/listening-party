@@ -294,24 +294,24 @@ selections:
   - week: 22
     year_slot: 2010
     contributor: jamie
-    album: "Have One on Me"
-    artist: "Joanna Newsom"
-    status: upcoming
+    album: "In Evening Air"
+    artist: "Future Islands"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
       spotify: ""
       youtube: ""
-    notes: "Also considering: In Evening Air – Future Islands"
+    notes: "Also considering: Have One On Me - Joanna Newsom"
 
 
   # ── 2011 ─────────────────────────────────────────────────────────
   - week: 23
     year_slot: 2011
     contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
+    album: "Kaputt"
+    artist: "Destroyer"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
