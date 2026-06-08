@@ -322,15 +322,15 @@ selections:
   - week: 24
     year_slot: 2011
     contributor: jamie
-    album: "Black Sands"
-    artist: "Bonobo"
-    status: upcoming
+    album: "Let The Talk"
+    artist: "Hugh Laurie"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
       spotify: ""
       youtube: ""
-    notes: "Also considering: The Harrow & The Harvest – Gillian Welch; Let Them Talk – Hugh Laurie; Biophilia – Björk; Bad as Me – Tom Waits"
+    notes: "Also considering: The Harrow & The Harvest – Gillian Welch; Black Sands – Bonobo; Biophilia – Björk; Bad as Me – Tom Waits"
 
   # ── 2012 ─────────────────────────────────────────────────────────
   - week: 25
