@@ -1,23 +1,67 @@
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join, dirname } from 'node:path';
 import yaml from 'js-yaml';
+import { z } from 'astro/zod';
 
-// In dev, import.meta.url points to the source file → relative path works.
-// In CI build, compiled chunks land in dist/.prerender/ → fall back to process.cwd().
-function resolveDataDir(): string {
-  const relPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'data');
-  if (existsSync(relPath)) return relPath;
-  return join(process.cwd(), 'src', 'data');
-}
-const dataDir = resolveDataDir();
+// All YAML is pulled in through Vite at build time (no node:fs, no cwd
+// guessing) and validated with zod, so a typo in a weekly edit fails the
+// build with a pointed error instead of silently hiding an album.
+
+// ── Schemas ───────────────────────────────────────────────────────
+// YAML renders an empty value (`notes:`) as null — coerce those to ''.
+const looseString = z.preprocess(v => v ?? '', z.string());
+
+const contributorSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  color: z.string().min(1),
+});
+
+const seasonMetaSchema = z.object({
+  id: z.union([z.string(), z.number()]).transform(String),
+  title: z.string(),
+  description: z.string(),
+  contributors: z.array(z.string()).default([]),
+  status: z.string(),
+});
+
+const linksSchema = z.object({
+  wikipedia: looseString.optional(),
+  spotify: looseString.optional(),
+  youtube: looseString.optional(),
+});
+
+const selectionSchema = z
+  .object({
+    week: z.number().int().min(1),
+    year_slot: z.number().int(),
+    contributor: z.string().min(1),
+    album: looseString,
+    artist: looseString,
+    status: z.enum(['completed', 'upcoming']),
+    artwork_url: looseString.optional(),
+    links: linksSchema.optional(),
+    notes: looseString.optional(),
+  })
+  .superRefine((sel, ctx) => {
+    if (sel.status === 'completed' && (!sel.album.trim() || !sel.artist.trim())) {
+      ctx.addIssue({
+        code: 'custom',
+        message: `week ${sel.week} is completed but is missing album and/or artist`,
+      });
+    }
+  });
+
+const seasonFileSchema = z.object({
+  season: z.union([z.string(), z.number()]).transform(String),
+  title: z.string(),
+  description: z.string(),
+  total_weeks: z.number().int().min(1),
+  selections: z.array(selectionSchema),
+});
 
 // ── Types ─────────────────────────────────────────────────────────
-export interface Contributor {
-  id: string;
-  name: string;
-  color: string;
-}
+export type Contributor = z.output<typeof contributorSchema>;
+export type SeasonMeta = z.output<typeof seasonMetaSchema>;
+export type Selection = z.output<typeof selectionSchema> & { season: string };
 
 export interface Season {
   id: string;
@@ -27,43 +71,106 @@ export interface Season {
   selections: Selection[];
 }
 
-export interface Selection {
-  week: number;
-  year_slot: number;
-  contributor: string;
-  album: string;
-  artist: string;
-  status: 'completed' | 'upcoming';
-  artwork_url?: string;
-  links?: { wikipedia?: string; spotify?: string; youtube?: string };
-  notes?: string;
-  season?: string; // injected after loading
+// ── Loading ───────────────────────────────────────────────────────
+function parseYaml<S extends z.ZodTypeAny>(schema: S, raw: string, label: string): z.output<S> {
+  let data: unknown;
+  try {
+    data = yaml.load(raw);
+  } catch (e) {
+    throw new Error(`${label}: invalid YAML — ${(e as Error).message}`);
+  }
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    const issues = result.error.issues
+      .map(i => `  • ${i.path.join('.') || '(root)'}: ${i.message}`)
+      .join('\n');
+    throw new Error(`${label} failed validation:\n${issues}`);
+  }
+  return result.data;
 }
+
+const contributorsRaw = import.meta.glob('../data/contributors.yaml', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+const seasonsRaw = import.meta.glob('../data/seasons.yaml', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+const selectionFilesRaw = import.meta.glob('../data/selections/*.yaml', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+const contributors: Contributor[] = parseYaml(
+  z.array(contributorSchema),
+  Object.values(contributorsRaw)[0]!,
+  'contributors.yaml'
+);
+
+const seasonsIndex: SeasonMeta[] = parseYaml(
+  z.array(seasonMetaSchema),
+  Object.values(seasonsRaw)[0]!,
+  'seasons.yaml'
+);
+
+const knownContributors = new Set(contributors.map(c => c.id));
+
+const seasons: Season[] = Object.entries(selectionFilesRaw)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, raw]) => {
+    const fileName = path.split('/').pop()!;
+    const id = fileName.replace('.yaml', '');
+    const parsed = parseYaml(seasonFileSchema, raw, `selections/${fileName}`);
+
+    const seenWeeks = new Set<number>();
+    for (const sel of parsed.selections) {
+      if (seenWeeks.has(sel.week)) {
+        throw new Error(`selections/${fileName}: duplicate week ${sel.week}`);
+      }
+      seenWeeks.add(sel.week);
+      if (!knownContributors.has(sel.contributor)) {
+        throw new Error(
+          `selections/${fileName}: week ${sel.week} references unknown contributor "${sel.contributor}"`
+        );
+      }
+    }
+
+    return {
+      id,
+      title: parsed.title,
+      description: parsed.description,
+      total_weeks: parsed.total_weeks,
+      selections: parsed.selections.map(s => ({ ...s, season: id })),
+    };
+  });
 
 // ── Loaders ───────────────────────────────────────────────────────
 export function loadContributors(): Contributor[] {
-  const raw = readFileSync(join(dataDir, 'contributors.yaml'), 'utf8');
-  return yaml.load(raw) as Contributor[];
+  return contributors;
+}
+
+export function loadSeasonsIndex(): SeasonMeta[] {
+  return seasonsIndex;
 }
 
 export function loadSeason(year: string): Season {
-  const raw = readFileSync(join(dataDir, 'selections', `${year}.yaml`), 'utf8');
-  const season = yaml.load(raw) as Season;
-  season.id = year;
-  // Inject season id into each selection
-  for (const s of season.selections) s.season = year;
+  const season = seasons.find(s => s.id === year);
+  if (!season) throw new Error(`No season data file for "${year}" in src/data/selections/`);
   return season;
 }
 
 export function loadAllSeasons(): Season[] {
-  const files = readdirSync(join(dataDir, 'selections'))
-    .filter(f => f.endsWith('.yaml'))
-    .sort();
-  return files.map(f => loadSeason(f.replace('.yaml', '')));
+  return seasons;
 }
 
 export function loadAllSelections(): Selection[] {
-  return loadAllSeasons().flatMap(s => s.selections);
+  return seasons.flatMap(s => s.selections);
 }
 
 // ── Helpers ───────────────────────────────────────────────────────

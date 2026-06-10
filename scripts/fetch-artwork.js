@@ -2,29 +2,28 @@
 /**
  * fetch-artwork.js
  * ─────────────────
- * Reads 2026.yaml, fetches missing artwork_url from the iTunes Search API
- * (free, no API key), and writes the URLs back to the file.
+ * Scans every season file in src/data/selections/, fetches missing
+ * artwork_url values from the iTunes Search API (free, no API key),
+ * and writes the URLs back to the files.
  *
  * Usage:
  *   node scripts/fetch-artwork.js
  *
  * Run any time you add new completed albums without artwork_url.
  * Safe to re-run: only fills entries where artwork_url is empty.
+ *
+ * Entries are identified by parsing the YAML properly (js-yaml), but the
+ * write-back is a targeted line edit so comments and formatting are
+ * preserved exactly.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, dirname } from 'node:path';
+import yaml from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dataPath = join(__dirname, '..', 'src', 'data', 'selections', '2026.yaml');
-
-// ── Simple YAML line parser (no external dep needed for this script) ──
-// We do targeted string replacement rather than full parse/serialize,
-// so the file formatting is preserved exactly.
-
-const raw = readFileSync(dataPath, 'utf8');
-const lines = raw.split('\n');
+const selectionsDir = join(__dirname, '..', 'src', 'data', 'selections');
 
 async function fetchArtwork(artist, album) {
   const q = encodeURIComponent(`${artist} ${album}`);
@@ -53,62 +52,76 @@ async function fetchArtwork(artist, album) {
   return null;
 }
 
-// Find entries: look for blocks starting with "  - week:" and extract
-// album/artist/status/artwork_url.
-// Strategy: process file as text, find each selection block, check
-// if status=completed and artwork_url is empty, then fetch + replace.
-
-const blockRegex = /(\s+- week: \d+[\s\S]*?)(?=\s+- week: \d+|$)/g;
-
-let updated = 0;
-let output = raw;
-
-const blocks = [...raw.matchAll(blockRegex)];
-
-for (const match of blocks) {
-  const block = match[0];
-
-  const statusMatch = block.match(/status:\s*(\S+)/);
-  const artworkMatch = block.match(/artwork_url:\s*["']?([^"'\n]*)["']?/);
-  const albumMatch = block.match(/album:\s*["']?([^"'\n]+)["']?/);
-  const artistMatch = block.match(/artist:\s*["']?([^"'\n]+)["']?/);
-  const weekMatch = block.match(/week:\s*(\d+)/);
-
-  if (!statusMatch || !artworkMatch || !albumMatch || !artistMatch) continue;
-
-  const status = statusMatch[1].trim();
-  const artwork = artworkMatch[1].trim();
-  const album = albumMatch[1].trim();
-  const artist = artistMatch[1].trim();
-  const week = weekMatch?.[1] ?? '?';
-
-  if (status !== 'completed') continue;
-  if (artwork !== '') continue;
-  if (!album || !artist) continue;
-
-  console.log(`Fetching artwork for Week ${week}: ${artist} – ${album}`);
-  const artUrl = await fetchArtwork(artist, album);
-
-  if (artUrl) {
-    console.log(`  ✓ ${artUrl}`);
-    // Replace the empty artwork_url line in this block
-    const newBlock = block.replace(
-      /artwork_url:\s*["']?["']?/,
-      `artwork_url: "${artUrl}"`
-    );
-    output = output.replace(block, newBlock);
-    updated++;
-  } else {
-    console.log(`  ✗ Not found — skipping`);
+/**
+ * Replace the empty artwork_url line inside the `- week: N` entry.
+ * Mutates `lines` in place; returns true if a line was replaced.
+ */
+function setArtworkUrl(lines, week, url) {
+  const startRe = new RegExp(`^\\s*- week:\\s*${week}\\b`);
+  const start = lines.findIndex(l => startRe.test(l));
+  if (start === -1) return false;
+  for (let i = start + 1; i < lines.length; i++) {
+    if (/^\s*- week:/.test(lines[i])) break; // ran into the next entry
+    const m = lines[i].match(/^(\s*)artwork_url:/);
+    if (m) {
+      lines[i] = `${m[1]}artwork_url: "${url}"`;
+      return true;
+    }
   }
-
-  // Be polite to the API
-  await new Promise(r => setTimeout(r, 300));
+  return false;
 }
 
-if (updated > 0) {
-  writeFileSync(dataPath, output, 'utf8');
-  console.log(`\n✅ Updated ${updated} artwork URL${updated > 1 ? 's' : ''} in 2026.yaml`);
-} else {
+let totalUpdated = 0;
+const files = readdirSync(selectionsDir).filter(f => f.endsWith('.yaml')).sort();
+
+for (const file of files) {
+  const filePath = join(selectionsDir, file);
+  const raw = readFileSync(filePath, 'utf8');
+
+  let doc;
+  try {
+    doc = yaml.load(raw);
+  } catch (e) {
+    console.error(`✗ ${file}: invalid YAML — ${e.message}`);
+    process.exitCode = 1;
+    continue;
+  }
+
+  const needing = (doc?.selections ?? []).filter(
+    s => s.status === 'completed' && !s.artwork_url && s.album && s.artist
+  );
+  if (needing.length === 0) continue;
+
+  console.log(`\n${file}:`);
+  const lines = raw.split('\n');
+  let updated = 0;
+
+  for (const sel of needing) {
+    console.log(`Fetching artwork for Week ${sel.week}: ${sel.artist} – ${sel.album}`);
+    const artUrl = await fetchArtwork(sel.artist, sel.album);
+
+    if (artUrl) {
+      if (setArtworkUrl(lines, sel.week, artUrl)) {
+        console.log(`  ✓ ${artUrl}`);
+        updated++;
+      } else {
+        console.warn(`  ⚠ Could not locate artwork_url line for week ${sel.week} — skipping`);
+      }
+    } else {
+      console.log(`  ✗ Not found — skipping`);
+    }
+
+    // Be polite to the API
+    await new Promise(r => setTimeout(r, 300));
+  }
+
+  if (updated > 0) {
+    writeFileSync(filePath, lines.join('\n'), 'utf8');
+    console.log(`✅ Updated ${updated} artwork URL${updated > 1 ? 's' : ''} in ${file}`);
+    totalUpdated += updated;
+  }
+}
+
+if (totalUpdated === 0) {
   console.log('\n✅ Nothing to update — all completed entries already have artwork.');
 }

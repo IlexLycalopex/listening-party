@@ -302,6 +302,11 @@ img { display: block; max-width: 100%; }
   border-radius: 50%;
   flex-shrink: 0;
 }
+.pick-row__links {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
 
 /* ── Hero ───────────────────────────────────────────────────────── */
 .hero {
@@ -419,6 +424,7 @@ img { display: block; max-width: 100%; }
   gap: 8px;
   font-size: 0.875rem;
   font-weight: 500;
+  text-decoration: none;
 }
 .contributor-badge__dot {
   width: 10px;
@@ -913,6 +919,15 @@ img { display: block; max-width: 100%; }
   flex-wrap: wrap;
   gap: 8px;
 }
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+.site-footer__hint { color: var(--text-faint); }
+.site-footer__hint code { font-family: var(--mono); }
 
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 860px) {

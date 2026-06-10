@@ -4,9 +4,13 @@
   contributors: [jamie, nick]
   status: active
 
-# Add future seasons here, e.g.:
+# Add future seasons here (also create src/data/selections/<id>.yaml), e.g.:
 # - id: "2027"
 #   title: "Listening Party 2027"
 #   description: "3 contributors. Working backwards from 1999."
+#   contributors: [jamie, nick, chris]
+#   status: active
+# - id: "2028"
+#   title: "Listening Party 2028"
 #   contributors: [jamie, nick, chris]
 #   status: active

@@ -1,18 +1,9 @@
 ---
-import { loadContributors } from '../lib/data';
-import yaml from 'js-yaml';
-import { readFileSync, existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join, dirname } from 'node:path';
+import { loadContributors, loadSeasonsIndex } from '../lib/data';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const relPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'data', 'seasons.yaml');
-const seasonsPath = existsSync(relPath) ? relPath : join(process.cwd(), 'src', 'data', 'seasons.yaml');
-const seasonsRaw = readFileSync(seasonsPath, 'utf8');
-const seasons: Array<{ id: string; status: string }> = yaml.load(seasonsRaw) as any;
-const activeSeasons = seasons.filter(s => s.status === 'active');
-
+const activeSeasons = loadSeasonsIndex().filter(s => s.status === 'active');
 const contributors = loadContributors();
 const pathname = Astro.url.pathname;
 ---

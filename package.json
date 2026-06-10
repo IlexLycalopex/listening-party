@@ -10,13 +10,17 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch-artwork": "node scripts/fetch-artwork.js"
+    "fetch-artwork": "node scripts/fetch-artwork.js",
+    "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.1.6",
     "js-yaml": "^4.1.1"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0.9"
+    "@astrojs/check": "^0.9.9",
+    "@types/js-yaml": "^4.0.9",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base title="Not found | Listening Party" description="That page doesn't exist.">
+  <div class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">404</h1>
+      <p class="page-hero__sub">That page doesn't exist — maybe the record skipped.</p>
+      <p style="margin-top:24px;">
+        <a href={`${base}/`} class="artist-detail__back">
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to the party
+        </a>
+      </p>
+    </div>
+  </div>
+</Base>
