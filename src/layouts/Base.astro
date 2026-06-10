@@ -38,6 +38,49 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <body>
   <SiteNav />
   <slot />
+  <script>
+    // Site-wide modal handling via event delegation: any element with
+    // [data-modal] opens the .notes-modal with that id; [data-close-modal]
+    // or Escape closes it.
+    function openModal(id: string) {
+      const modal = document.getElementById(id) as HTMLElement | null;
+      if (!modal) return;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      (modal.querySelector('.notes-modal__close') as HTMLElement)?.focus();
+    }
+
+    function closeModal(modal: HTMLElement) {
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+
+      // Open via trigger button
+      const trigger = target.closest('[data-modal]') as HTMLElement | null;
+      if (trigger?.dataset.modal) {
+        openModal(trigger.dataset.modal);
+        return;
+      }
+
+      // Close via backdrop or close button
+      if (target.closest('[data-close-modal]')) {
+        const modal = target.closest('.notes-modal') as HTMLElement | null;
+        if (modal) closeModal(modal);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const open = document.querySelector('.notes-modal:not([hidden])') as HTMLElement | null;
+        if (open) closeModal(open);
+      }
+    });
+  </script>
 </body>
 </html>
 <style is:global>

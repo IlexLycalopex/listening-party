@@ -212,6 +212,12 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   gap: 6px;
   transition: transform var(--transition), border-color var(--transition);
+  /* cards are <button>s that open the artist modal */
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
 }
 .artist-card:hover { transform: translateY(-2px); border-color: #3a3a3a; }
 .artist-card__name {
@@ -227,9 +233,6 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   color: var(--text-faint);
 }
-.artist-detail {
-  padding: 48px 0;
-}
 .artist-detail__back {
   font-size: 0.75rem;
   font-weight: 600;
@@ -243,18 +246,6 @@ img { display: block; max-width: 100%; }
   transition: color var(--transition);
 }
 .artist-detail__back:hover { color: var(--text-muted); }
-.artist-detail__title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 32px;
-}
-.picks-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 640px;
-}
 .pick-row {
   display: flex;
   align-items: center;
@@ -776,6 +767,21 @@ img { display: block; max-width: 100%; }
   color: var(--text-muted);
   white-space: pre-wrap;
 }
+/* Wide variant — used by artist modals with a scrollable pick list */
+.notes-modal__box--wide {
+  max-width: 620px;
+  max-height: min(80vh, 640px);
+  display: flex;
+  flex-direction: column;
+}
+.notes-modal__picks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  margin: 0 -8px;
+  padding: 0 8px;
+}
 
 /* ── Hero jump-to-current button ────────────────────────────────── */
 .hero__jump-btn {
@@ -866,34 +872,6 @@ img { display: block; max-width: 100%; }
   flex-shrink: 0;
 }
 
-/* ── Artist detail enhancements ─────────────────────────────────── */
-.artist-detail__meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.artist-detail__pick-count {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-.artist-detail__season-badge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 10px;
-  border-radius: 12px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  transition: color var(--transition), border-color var(--transition);
-}
-.artist-detail__season-badge:hover {
-  color: var(--text);
-  border-color: #444;
-}
 .pick-row__season-tag {
   font-size: 0.7rem;
   font-weight: 600;
