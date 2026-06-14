@@ -336,9 +336,9 @@ selections:
   - week: 25
     year_slot: 2012
     contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
+    album: "Channel Orange"
+    artist: "Frank Ocean"
+    status: completed
     artwork_url: ""
     links:
       wikipedia: ""
