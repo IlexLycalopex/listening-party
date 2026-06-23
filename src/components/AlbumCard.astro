@@ -32,7 +32,7 @@ const {
 
 const isUpcoming = status === 'upcoming';
 const hasNotes = !isUpcoming && Boolean(notes?.trim());
-const modalId = `notes-wk${week}`;
+const modalId = `notes-wk${week}-${contributor}`;
 ---
 
 <article

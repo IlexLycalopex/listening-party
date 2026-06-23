@@ -128,12 +128,17 @@ const seasons: Season[] = Object.entries(selectionFilesRaw)
     const id = fileName.replace('.yaml', '');
     const parsed = parseYaml(seasonFileSchema, raw, `selections/${fileName}`);
 
-    const seenWeeks = new Set<number>();
+    // A week may host more than one selection (e.g. a "highlights" week with
+    // one pick per contributor), but never the same contributor twice.
+    const seenWeekContributors = new Set<string>();
     for (const sel of parsed.selections) {
-      if (seenWeeks.has(sel.week)) {
-        throw new Error(`selections/${fileName}: duplicate week ${sel.week}`);
+      const key = `${sel.week}:${sel.contributor}`;
+      if (seenWeekContributors.has(key)) {
+        throw new Error(
+          `selections/${fileName}: week ${sel.week} has more than one pick from contributor "${sel.contributor}"`
+        );
       }
-      seenWeeks.add(sel.week);
+      seenWeekContributors.add(key);
       if (!knownContributors.has(sel.contributor)) {
         throw new Error(
           `selections/${fileName}: week ${sel.week} references unknown contributor "${sel.contributor}"`

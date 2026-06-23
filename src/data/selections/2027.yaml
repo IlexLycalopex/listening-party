@@ -1,6 +1,6 @@
 season: 2027
 title: "Listening Party 2027"
-description: "52 weeks. 3 contributors. Each picks an album from every year, working backwards from 1999."
+description: "52 weeks. 3 contributors. Each picks an album from every year, working backwards from 1999. Final week: each contributor's highlight of the season."
 total_weeks: 52
 
 selections:
@@ -684,9 +684,35 @@ selections:
       youtube: ""
     notes: ""
 
-  # ── 1982 ─────────────────────────────────────────────────────────
+  # ── Best of 2027 ─────────────────────────────────────────────────
   - week: 52
-    year_slot: 1982
+    year_slot: 2027
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 52
+    year_slot: 2027
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 52
+    year_slot: 2027
     contributor: nick
     album: ""
     artist: ""
