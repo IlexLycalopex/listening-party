@@ -6,7 +6,7 @@
 
 - id: "2027"
   title: "Listening Party 2027"
-  description: "52 weeks. 3 contributors. One album from every year 1999 backwards to 1948."
+  description: "52 weeks. 3 contributors, each picking an album from every year, working backwards from 1999 to 1983 (plus one extra week for 1982)."
   contributors: [chris, jamie, nick]
   status: upcoming
 

@@ -1,6 +1,6 @@
 season: 2027
 title: "Listening Party 2027"
-description: "52 weeks. 3 contributors. One album from every year 1999 backwards to 1948."
+description: "52 weeks. 3 contributors. Each picks an album from every year, working backwards from 1999."
 total_weeks: 52
 
 selections:
@@ -18,8 +18,47 @@ selections:
       youtube: ""
     notes: ""
 
-  # ── 1998 ─────────────────────────────────────────────────────────
   - week: 2
+    year_slot: 1999
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 3
+    year_slot: 1999
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  # ── 1998 ─────────────────────────────────────────────────────────
+  - week: 4
+    year_slot: 1998
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 5
     year_slot: 1998
     contributor: nick
     album: ""
@@ -32,8 +71,21 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 6
+    year_slot: 1998
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1997 ─────────────────────────────────────────────────────────
-  - week: 3
+  - week: 7
     year_slot: 1997
     contributor: jamie
     album: ""
@@ -46,8 +98,34 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 8
+    year_slot: 1997
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 9
+    year_slot: 1997
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1996 ─────────────────────────────────────────────────────────
-  - week: 4
+  - week: 10
     year_slot: 1996
     contributor: jamie
     album: ""
@@ -60,8 +138,34 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 11
+    year_slot: 1996
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 12
+    year_slot: 1996
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1995 ─────────────────────────────────────────────────────────
-  - week: 5
+  - week: 13
     year_slot: 1995
     contributor: nick
     album: ""
@@ -74,8 +178,34 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 14
+    year_slot: 1995
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 15
+    year_slot: 1995
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1994 ─────────────────────────────────────────────────────────
-  - week: 6
+  - week: 16
     year_slot: 1994
     contributor: chris
     album: ""
@@ -88,8 +218,60 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 17
+    year_slot: 1994
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 18
+    year_slot: 1994
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1993 ─────────────────────────────────────────────────────────
-  - week: 7
+  - week: 19
+    year_slot: 1993
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 20
+    year_slot: 1993
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 21
     year_slot: 1993
     contributor: jamie
     album: ""
@@ -103,7 +285,20 @@ selections:
     notes: ""
 
   # ── 1992 ─────────────────────────────────────────────────────────
-  - week: 8
+  - week: 22
+    year_slot: 1992
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 23
     year_slot: 1992
     contributor: nick
     album: ""
@@ -116,8 +311,21 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 24
+    year_slot: 1992
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1991 ─────────────────────────────────────────────────────────
-  - week: 9
+  - week: 25
     year_slot: 1991
     contributor: chris
     album: ""
@@ -130,8 +338,47 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 26
+    year_slot: 1991
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 27
+    year_slot: 1991
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1990 ─────────────────────────────────────────────────────────
-  - week: 10
+  - week: 28
+    year_slot: 1990
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 29
     year_slot: 1990
     contributor: jamie
     album: ""
@@ -144,8 +391,47 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 30
+    year_slot: 1990
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1989 ─────────────────────────────────────────────────────────
-  - week: 11
+  - week: 31
+    year_slot: 1989
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 32
+    year_slot: 1989
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 33
     year_slot: 1989
     contributor: chris
     album: ""
@@ -159,7 +445,20 @@ selections:
     notes: ""
 
   # ── 1988 ─────────────────────────────────────────────────────────
-  - week: 12
+  - week: 34
+    year_slot: 1988
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 35
     year_slot: 1988
     contributor: nick
     album: ""
@@ -172,8 +471,21 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 36
+    year_slot: 1988
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1987 ─────────────────────────────────────────────────────────
-  - week: 13
+  - week: 37
     year_slot: 1987
     contributor: jamie
     album: ""
@@ -186,8 +498,47 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 38
+    year_slot: 1987
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 39
+    year_slot: 1987
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1986 ─────────────────────────────────────────────────────────
-  - week: 14
+  - week: 40
+    year_slot: 1986
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 41
     year_slot: 1986
     contributor: chris
     album: ""
@@ -200,8 +551,47 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 42
+    year_slot: 1986
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1985 ─────────────────────────────────────────────────────────
-  - week: 15
+  - week: 43
+    year_slot: 1985
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 44
+    year_slot: 1985
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 45
     year_slot: 1985
     contributor: nick
     album: ""
@@ -215,7 +605,20 @@ selections:
     notes: ""
 
   # ── 1984 ─────────────────────────────────────────────────────────
-  - week: 16
+  - week: 46
+    year_slot: 1984
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 47
     year_slot: 1984
     contributor: chris
     album: ""
@@ -228,8 +631,21 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 48
+    year_slot: 1984
+    contributor: jamie
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1983 ─────────────────────────────────────────────────────────
-  - week: 17
+  - week: 49
     year_slot: 1983
     contributor: jamie
     album: ""
@@ -242,486 +658,36 @@ selections:
       youtube: ""
     notes: ""
 
+  - week: 50
+    year_slot: 1983
+    contributor: chris
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
+  - week: 51
+    year_slot: 1983
+    contributor: nick
+    album: ""
+    artist: ""
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: ""
+
   # ── 1982 ─────────────────────────────────────────────────────────
-  - week: 18
+  - week: 52
     year_slot: 1982
     contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1981 ─────────────────────────────────────────────────────────
-  - week: 19
-    year_slot: 1981
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1980 ─────────────────────────────────────────────────────────
-  - week: 20
-    year_slot: 1980
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1979 ─────────────────────────────────────────────────────────
-  - week: 21
-    year_slot: 1979
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1978 ─────────────────────────────────────────────────────────
-  - week: 22
-    year_slot: 1978
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1977 ─────────────────────────────────────────────────────────
-  - week: 23
-    year_slot: 1977
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1976 ─────────────────────────────────────────────────────────
-  - week: 24
-    year_slot: 1976
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1975 ─────────────────────────────────────────────────────────
-  - week: 25
-    year_slot: 1975
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1974 ─────────────────────────────────────────────────────────
-  - week: 26
-    year_slot: 1974
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1973 ─────────────────────────────────────────────────────────
-  - week: 27
-    year_slot: 1973
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1972 ─────────────────────────────────────────────────────────
-  - week: 28
-    year_slot: 1972
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1971 ─────────────────────────────────────────────────────────
-  - week: 29
-    year_slot: 1971
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1970 ─────────────────────────────────────────────────────────
-  - week: 30
-    year_slot: 1970
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1969 ─────────────────────────────────────────────────────────
-  - week: 31
-    year_slot: 1969
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1968 ─────────────────────────────────────────────────────────
-  - week: 32
-    year_slot: 1968
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1967 ─────────────────────────────────────────────────────────
-  - week: 33
-    year_slot: 1967
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1966 ─────────────────────────────────────────────────────────
-  - week: 34
-    year_slot: 1966
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1965 ─────────────────────────────────────────────────────────
-  - week: 35
-    year_slot: 1965
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1964 ─────────────────────────────────────────────────────────
-  - week: 36
-    year_slot: 1964
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1963 ─────────────────────────────────────────────────────────
-  - week: 37
-    year_slot: 1963
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1962 ─────────────────────────────────────────────────────────
-  - week: 38
-    year_slot: 1962
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1961 ─────────────────────────────────────────────────────────
-  - week: 39
-    year_slot: 1961
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1960 ─────────────────────────────────────────────────────────
-  - week: 40
-    year_slot: 1960
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1959 ─────────────────────────────────────────────────────────
-  - week: 41
-    year_slot: 1959
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1958 ─────────────────────────────────────────────────────────
-  - week: 42
-    year_slot: 1958
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1957 ─────────────────────────────────────────────────────────
-  - week: 43
-    year_slot: 1957
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1956 ─────────────────────────────────────────────────────────
-  - week: 44
-    year_slot: 1956
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1955 ─────────────────────────────────────────────────────────
-  - week: 45
-    year_slot: 1955
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1954 ─────────────────────────────────────────────────────────
-  - week: 46
-    year_slot: 1954
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1953 ─────────────────────────────────────────────────────────
-  - week: 47
-    year_slot: 1953
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1952 ─────────────────────────────────────────────────────────
-  - week: 48
-    year_slot: 1952
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1951 ─────────────────────────────────────────────────────────
-  - week: 49
-    year_slot: 1951
-    contributor: jamie
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1950 ─────────────────────────────────────────────────────────
-  - week: 50
-    year_slot: 1950
-    contributor: nick
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1949 ─────────────────────────────────────────────────────────
-  - week: 51
-    year_slot: 1949
-    contributor: chris
-    album: ""
-    artist: ""
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: ""
-
-  # ── 1948 ─────────────────────────────────────────────────────────
-  - week: 52
-    year_slot: 1948
-    contributor: jamie
     album: ""
     artist: ""
     status: upcoming
