@@ -490,7 +490,9 @@ img { display: block; max-width: 100%; }
 }
 .year-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  /* Caps at 3 columns (1, 2 or 3 cards per year all fill the row evenly);
+     never wraps past 3-up, even on narrow mobile viewports. */
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, calc((100% - 32px) / 3)), 1fr));
   gap: 16px;
 }
 
@@ -913,9 +915,20 @@ img { display: block; max-width: 100%; }
 }
 @media (max-width: 640px) {
   .hero { padding: 40px 0 36px; }
-  .year-cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .year-cards { gap: 8px; }
+  .album-card__body { padding: 8px 8px 7px; gap: 3px; }
+  .album-card__contributor { font-size: 0.58rem; gap: 4px; }
+  .album-card__contributor-dot { width: 6px; height: 6px; }
+  .album-card__title { font-size: 0.72rem; }
+  .album-card__artist { font-size: 0.65rem; }
+  .album-card__links { gap: 2px; padding-top: 6px; }
+  .album-card__link { width: 24px; height: 24px; }
+  .album-card__link svg { width: 13px; height: 13px; }
+  .album-card__week { font-size: 0.55rem; padding: 2px 5px; top: 6px; left: 6px; }
   .site-footer { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 380px) {
-  .year-cards { grid-template-columns: 1fr; }
+  .year-cards { gap: 6px; }
+  .album-card__body { padding: 6px 6px 6px; }
+  .album-card__links { display: none; }
 }
