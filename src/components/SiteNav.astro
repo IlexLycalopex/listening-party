@@ -3,7 +3,7 @@ import { loadContributors, loadSeasonsIndex } from '../lib/data';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const activeSeasons = loadSeasonsIndex().filter(s => s.status === 'active');
+const activeSeasons = loadSeasonsIndex();
 const contributors = loadContributors();
 const pathname = Astro.url.pathname;
 ---
