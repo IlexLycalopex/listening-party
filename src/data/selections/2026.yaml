@@ -364,8 +364,8 @@ selections:
   - week: 27
     year_slot: 2013
     contributor: nick
-    album: ""
-    artist: ""
+    album: "Days Are Gone"
+    artist: "HAIM"
     status: upcoming
     artwork_url: ""
     links:
@@ -385,7 +385,7 @@ selections:
       wikipedia: ""
       spotify: ""
       youtube: ""
-    notes: "Also considering: Dream River - Bill Callahan; Days Are Gone – HAIM"
+    notes: "Also considering: Dream River - Bill Callahan"
 
 
   # ── 2014 ─────────────────────────────────────────────────────────
