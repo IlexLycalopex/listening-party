@@ -391,6 +391,19 @@ selections:
   # ── 2014 ─────────────────────────────────────────────────────────
   - week: 29
     year_slot: 2014
+    contributor: jamie
+    album: "Royal Blood"
+    artist: "Royal Blood"
+    status: upcoming
+    artwork_url: ""
+    links:
+      wikipedia: ""
+      spotify: ""
+      youtube: ""
+    notes: "Also considering: Ultraviolence – Lana Del Rey; St. Vincent – St. Vincent; I Forgot Where We Were – Ben Howard"
+
+  - week: 30
+    year_slot: 2014
     contributor: nick
     album: ""
     artist: ""
@@ -401,19 +414,6 @@ selections:
       spotify: ""
       youtube: ""
     notes: ""
-
-  - week: 30
-    year_slot: 2014
-    contributor: jamie
-    album: "Ultraviolence"
-    artist: "Lana Del Rey"
-    status: upcoming
-    artwork_url: ""
-    links:
-      wikipedia: ""
-      spotify: ""
-      youtube: ""
-    notes: "Also considering: St. Vincent – St. Vincent; Royal Blood – Royal Blood; I Forgot Where We Were – Ben Howard"
 
   # ── 2015 ─────────────────────────────────────────────────────────
   - week: 31
