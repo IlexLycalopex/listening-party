@@ -405,8 +405,8 @@ selections:
   - week: 30
     year_slot: 2014
     contributor: nick
-    album: ""
-    artist: ""
+    album: "It's Album Time"
+    artist: "Todd Terje"
     status: upcoming
     artwork_url: ""
     links:
