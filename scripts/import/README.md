@@ -55,12 +55,16 @@ creates a second, independent reading list at `/reading/nick`.
 |---|---|---|
 | Listening Party | 3 contributors, 2 seasons, 106 selections (31 completed) | all |
 | Cigar Lounge | 1 entry | all |
-| Reading List | 7 years, 245 books | years + 2020 (13 books); 2021–2026 generated, not yet applied |
+| Reading List | 7 years, 245 books | all |
 
-The remaining reading-list years are generated and valid — they were left
-unapplied only because this session could reach the database solely through the
-MCP SQL bridge, which is a poor fit for ~150 KB of book descriptions. Applying
-them is the `psql` loop above, or six pastes into the SQL editor.
+All three imports are complete and verified against the source files.
+
+The reading list did not go in through these scripts in the end. ~150 KB of
+book descriptions was a poor fit for the SQL bridge available at the time, so a
+throwaway Edge Function fetched the YAML from the public GitHub repo and wrote
+it server-side instead. The function has since been emptied and should be
+deleted from the dashboard. These scripts remain the supported path for a fresh
+import or a new workspace.
 
 ## Schema notes worth carrying forward
 
@@ -71,9 +75,12 @@ them is the `psql` loop above, or six pastes into the SQL editor.
   (`>£40`), `price_gbp` holds the parsed number and `price_approximate` records
   that it was hedged — mirroring `parsePrice()` in the cigar lounge's
   `src/lib/cigars.ts`.
-- **Publisher normalisation happens on write.** `publisher_normalised` is filled
-  from the reading list's own `scripts/publisher-aliases.js`, so the publishers
-  page groups imprints without re-deriving on every read.
+- **Publisher normalisation happens on write, in the database.** The alias table
+  from `readinglist/scripts/publisher-aliases.js` now lives in
+  `rl_publisher_aliases`, with a trigger on `rl_books` that fills
+  `publisher_normalised` via `app.canonical_publisher()` (migration 0005). An
+  importer no longer has to remember to do it, and a publisher typed into the
+  edit form is normalised the same way one fetched from Open Library is.
 - **The enrichment scripts have not moved yet.** `fetch-artwork.js` (iTunes) and
   the reading list's `fetch-metadata.js` (OpenLibrary) still run at build time
   against YAML. They belong in an Edge Function called after a save, plus a
