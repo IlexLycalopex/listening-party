@@ -17,9 +17,11 @@ npm ci
 # Listening Party — reads this repo's own src/data/
 node scripts/import/listening-party.js > out/listening-party.sql
 
-# Reading List — one file per year, because 245 books with OpenLibrary
-# descriptions is too much for a single paste into the SQL editor
-READING_LIST_REPO=../readinglist \  # ensure that checkout is on main
+# Reading List — one file per year, because ~250 books with OpenLibrary
+# descriptions is too much for a single paste into the SQL editor.
+# NB: that checkout must be on `main`, not the repo's default branch — see
+# "Import status" below.
+READING_LIST_REPO=../readinglist \
   node scripts/import/reading-list.js --out out/reading-list
 
 # Cigar Lounge
