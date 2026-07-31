@@ -66,6 +66,22 @@ it server-side instead. The function has since been emptied and should be
 deleted from the dashboard. These scripts remain the supported path for a fresh
 import or a new workspace.
 
+## Seeding an auth user with raw SQL
+
+Don't, if you can avoid it — use `auth.admin.createUser()`. If you must (the
+workspace importers need an owner to exist before they can run), the row has to
+look exactly like the one GoTrue writes:
+
+- An `auth.identities` row for the `email` provider, with `identity_data`
+  containing `sub`, `email` and `email_verified`. Its `email` column is
+  generated from `identity_data` — do not insert it directly.
+- **`confirmation_token`, `recovery_token`, `email_change_token_new` and
+  `email_change` must be `''`, not `NULL`.** They are nullable in the schema but
+  GoTrue scans them into Go `string`, so a NULL fails every lookup for that user
+  with `converting NULL to string is unsupported` — surfacing as a 500 from
+  `/otp` and a sign-in that simply never works. The remaining token columns
+  already default to `''`.
+
 ## Schema notes worth carrying forward
 
 - **`lp_contributors.user_id` is nullable.** Chris has picks scheduled for 2027
