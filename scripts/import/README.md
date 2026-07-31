@@ -19,7 +19,7 @@ node scripts/import/listening-party.js > out/listening-party.sql
 
 # Reading List — one file per year, because 245 books with OpenLibrary
 # descriptions is too much for a single paste into the SQL editor
-READING_LIST_REPO=../readinglist \
+READING_LIST_REPO=../readinglist \  # ensure that checkout is on main
   node scripts/import/reading-list.js --out out/reading-list
 
 # Cigar Lounge
@@ -55,9 +55,15 @@ creates a second, independent reading list at `/reading/nick`.
 |---|---|---|
 | Listening Party | 3 contributors, 2 seasons, 106 selections (31 completed) | all |
 | Cigar Lounge | 1 entry | all |
-| Reading List | 7 years, 245 books | all |
+| Reading List | 7 years, 249 books (2 currently reading) | all |
 
 All three imports are complete and verified against the source files.
+
+> **The reading list lives on `readinglist`'s `main` branch.** The repo's
+> *default* branch is `claude/build-reading-list-repo-3uY1S`, which is stale —
+> at the time of writing, three weeks and four books behind. The first import
+> took the default branch and silently loaded an old snapshot. Check `main`, or
+> compare book counts across branches, before trusting a checkout.
 
 The reading list did not go in through these scripts in the end. ~150 KB of
 book descriptions was a poor fit for the SQL bridge available at the time, so a
